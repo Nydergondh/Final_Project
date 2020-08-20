@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    private PlayerAnimations playerAnim;
+    //private PlayerAnimations playerAnim;
+    [SerializeField]
+    private PlayerBisectAnim playerAnimTorso;
+    [SerializeField]
+    private PlayerBisectAnim playerAnimLegs;
+
     private int attackType = 0;
     [SerializeField]
     private MeshRenderer[] weaponMeshes;
@@ -12,7 +17,7 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = GetComponent<PlayerAnimations>();
+        //playerAnim = GetComponent<PlayerAnimations>();
 
         for (int i = 1; i < weaponMeshes.Length; i++) {
             weaponMeshes[i].enabled = false;
@@ -22,17 +27,16 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerAnim.GetAttack()) {
+        if (!playerAnimTorso.GetAttack()) {
             SetAtkType();
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            playerAnim.SetAttack(true);
+            //playerAnim.SetAttack(true);
+            //TODO change latter to just have the above or this condicion
+            playerAnimTorso.SetAttack(true);
+            playerAnimLegs.SetAttack(true);
         }
-    }
-
-    public void UnsetAttack() {
-        playerAnim.SetAttack(false);
     }
 
     private void SetAtkType() {
@@ -62,7 +66,11 @@ public class PlayerCombat : MonoBehaviour
         }
 
         if (attackType <= 5 && attackType >= 0) {
-            playerAnim.SetCurretnWeapon(attackType);
+            //playerAnim.SetCurretnWeapon(attackType);
+            //TODO change latter to just have the above or this condicion
+            playerAnimTorso.SetCurretnWeapon(attackType);
+            playerAnimLegs.SetCurretnWeapon(attackType);
+
             SetWeaponMesh();
         }
 

@@ -8,6 +8,12 @@ public class PlayerMovement : MonoBehaviour
 
     private CharacterController controller;
     private PlayerAnimations playerAnim;
+
+    [SerializeField]
+    private PlayerBisectAnim playerAnimTorso;
+    [SerializeField]
+    private PlayerBisectAnim playerAnimLegs;
+
     [SerializeField]
     private Transform playerMesh;
 
@@ -34,19 +40,31 @@ public class PlayerMovement : MonoBehaviour
         zSpeed = Input.GetAxis("Vertical");
 
         //do all the move logic and calculation if the player recive any movement input at all
-        if (xSpeed != 0 || zSpeed != 0) { 
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) { 
             movement = new Vector3( xSpeed * moveSpeed, 0, zSpeed * moveSpeed);
             movement *= (Mathf.Abs(xSpeed) == 1 && Mathf.Abs(zSpeed) == 1) ? 0.7f : 1; //set the movement vector to 0.7 if player is moving on both axis
             velocityVector = new Vector3(movement.x + transform.position.x, 0 ,movement.z + transform.position.z);
 
             controller.SimpleMove(movement);
-            playerAnim.SetMoving(true);
+            //playerAnim.SetMoving(true);
+
+            //TODO change latter to just have the above or this condicion
+
+            playerAnimTorso.SetMoving(true);
+            playerAnimLegs.SetMoving(true);
+            
+
             //playerAnim.SetVelocity(new Vector2(xSpeed, zSpeed));
 
         }
         else {
             velocityVector = Vector3.zero;
-            playerAnim.SetMoving(false);
+            //playerAnim.SetMoving(false);
+
+            //TODO change latter to just have the above or this condicion
+            playerAnimTorso.SetMoving(false);
+            playerAnimLegs.SetMoving(false);
+            
         }
 
         playerMesh.LookAt(pointToLook);
@@ -54,10 +72,16 @@ public class PlayerMovement : MonoBehaviour
         productVector = Vector3.Cross(pointToLook - transform.position, velocityVector - transform.position);
         //if is moving and the y of the cross product between velocity and pointToLook is bigger than a threshold hten strafe 
         if (Mathf.Abs(velocityVector.magnitude) > 0.1f && Mathf.Abs(productVector.y) > 1.5) {
-                playerAnim.SetPlayerStrafe(true);
+            //playerAnim.SetPlayerStrafe(true);
+            //TODO change latter to just have the above or this condicion
+            playerAnimTorso.SetPlayerStrafe(true);
+            playerAnimLegs.SetPlayerStrafe(true);
         }
         else {
-            playerAnim.SetPlayerStrafe(false);
+            //playerAnim.SetPlayerStrafe(false);
+            //TODO change latter to just have the above or this condicion
+            playerAnimTorso.SetPlayerStrafe(false);
+            playerAnimLegs.SetPlayerStrafe(false);
         }
 
         //clear console

@@ -1,6 +1,9 @@
 ﻿using UnityEditor;
+using UnityEngine;
 using System.Reflection;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public static class Utils {
     static MethodInfo _clearConsoleMethod;
@@ -17,5 +20,21 @@ public static class Utils {
 
     public static void ClearLogConsole() {
         clearConsoleMethod.Invoke(new object(), null);
+    }
+
+    public static Vector3 GetVectorFromAngle(float angle) {
+        //angle  = 0 -> 360
+        float angleRad = angle * (Mathf.PI / 180f);
+        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+    }
+
+    public static float GetAngleFromVectorFloat(Vector3 dir) {
+        dir = dir.normalized;
+        float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        if (n < 0) {
+            n += 360;
+        }
+        return n;
     }
 }
