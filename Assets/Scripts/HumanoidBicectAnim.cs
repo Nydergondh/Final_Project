@@ -6,9 +6,24 @@ public class HumanoidBicectAnim : MonoBehaviour
 {
     
     protected Animator objAnim;
+    //TODO maybe refactor bellow (didn't know other way to do this at the time being)
+    protected bool isPlayer;
+    protected Player player;
+    protected Enemy enemy;
 
     void Start() {
+
         objAnim = GetComponent<Animator>();
+
+        if (GetComponentInParent<Enemy>() != null) {
+            enemy = GetComponentInParent<Enemy>();
+            isPlayer = false;
+        }
+        else if (GetComponentInParent<Player>() != null) {
+            isPlayer = true;
+            player = GetComponentInParent<Player>();
+        }
+
     }
 
     public void SetVelocity(Vector2 vel) {
@@ -48,7 +63,25 @@ public class HumanoidBicectAnim : MonoBehaviour
         objAnim.SetBool("Hitted", value);
     }
 
-    public void UnsetAttack() {
+    public void UnsetAnimAttack() {
         objAnim.SetBool("IsAttacking", false);
+    }
+
+    public void UnsetAttack() { //WARNING use this only in the torso anim of the humanoid (using it twice can break stuff!).
+        if (isPlayer) {
+            player.isAttacking = false;
+        }
+        else {
+            enemy.isAttacking = false;
+        }
+    }
+
+    IEnumerator WaitAttackAgain() {
+        yield return new WaitForSeconds(0.25f); //TODO change to a variable later
+        UnsetAttack();
+    }
+
+    public void SetStrafe(bool strafe) {
+        objAnim.SetBool("IsStrafing", strafe);
     }
 }

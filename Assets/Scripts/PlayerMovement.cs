@@ -9,10 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private PlayerAnimations playerAnim;
 
-    [SerializeField]
-    private PlayerBisectAnim playerAnimTorso;
-    [SerializeField]
-    private PlayerBisectAnim playerAnimLegs;
+    private Player player;
 
     [SerializeField]
     private Transform playerMesh;
@@ -23,11 +20,10 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         playerAnim = GetComponent<PlayerAnimations>();
+        player = GetComponent<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void Move() {
         float xSpeed, zSpeed;
         Vector3 movement;
 
@@ -40,21 +36,15 @@ public class PlayerMovement : MonoBehaviour
         zSpeed = Input.GetAxis("Vertical");
 
         //do all the move logic and calculation if the player recive any movement input at all
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) { 
-            movement = new Vector3( xSpeed * moveSpeed, 0, zSpeed * moveSpeed);
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {
+            movement = new Vector3(xSpeed * moveSpeed, 0, zSpeed * moveSpeed);
             movement *= (Mathf.Abs(xSpeed) == 1 && Mathf.Abs(zSpeed) == 1) ? 0.7f : 1; //set the movement vector to 0.7 if player is moving on both axis
-            velocityVector = new Vector3(movement.x + transform.position.x, 0 ,movement.z + transform.position.z);
+            velocityVector = new Vector3(movement.x + transform.position.x, 0, movement.z + transform.position.z);
 
             controller.SimpleMove(movement);
-            //playerAnim.SetMoving(true);
 
             //TODO change latter to just have the above or this condicion
-
-            playerAnimTorso.SetMoving(true);
-            playerAnimLegs.SetMoving(true);
-            
-
-            //playerAnim.SetVelocity(new Vector2(xSpeed, zSpeed));
+            player.SetAnimMoving(true);
 
         }
         else {
@@ -62,9 +52,8 @@ public class PlayerMovement : MonoBehaviour
             //playerAnim.SetMoving(false);
 
             //TODO change latter to just have the above or this condicion
-            playerAnimTorso.SetMoving(false);
-            playerAnimLegs.SetMoving(false);
-            
+            player.SetAnimMoving(false);
+
         }
 
         playerMesh.LookAt(pointToLook);
@@ -74,14 +63,12 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(velocityVector.magnitude) > 0.1f && Mathf.Abs(productVector.y) > 1.5) {
             //playerAnim.SetPlayerStrafe(true);
             //TODO change latter to just have the above or this condicion
-            playerAnimTorso.SetPlayerStrafe(true);
-            playerAnimLegs.SetPlayerStrafe(true);
+            player.SetAnimStrafing(true);
         }
         else {
             //playerAnim.SetPlayerStrafe(false);
             //TODO change latter to just have the above or this condicion
-            playerAnimTorso.SetPlayerStrafe(false);
-            playerAnimLegs.SetPlayerStrafe(false);
+            player.SetAnimStrafing(false);
         }
 
         //clear console
@@ -92,7 +79,6 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawLine(transform.position, pointToLook, Color.red); // player to mouse
         Debug.DrawLine(velocityVector, transform.position, Color.yellow); //player speed
         Debug.DrawLine(velocityVector, pointToLook, Color.blue); // (mouse - player speed) vector
-        
     }
 
     private void OnDrawGizmosSelected() {

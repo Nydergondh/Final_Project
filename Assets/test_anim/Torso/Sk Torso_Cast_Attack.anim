@@ -29061,7 +29061,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.6666667
-    functionName: UnsetAttack
+    functionName: UnsetAnimAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

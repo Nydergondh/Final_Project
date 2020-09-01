@@ -5,37 +5,33 @@ using UnityEngine;
 public class PlayerCombat : MonoBehaviour
 {
     //private PlayerAnimations playerAnim;
-    [SerializeField]
-    private PlayerBisectAnim playerAnimTorso;
-    [SerializeField]
-    private PlayerBisectAnim playerAnimLegs;
 
     private int attackType = 0;
     [SerializeField]
     private MeshRenderer[] weaponMeshes;
+
+    private Player player;
     //private KeyCode pressedWeapon;
     // Start is called before the first frame update
     void Start()
     {
-        //playerAnim = GetComponent<PlayerAnimations>();
+        player = GetComponent<Player>();
 
         for (int i = 1; i < weaponMeshes.Length; i++) {
             weaponMeshes[i].enabled = false;
         }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!playerAnimTorso.GetAttack()) {
+    public void Attack() {
+        if (!player.isAttacking) {
             SetAtkType();
         }
 
         if (Input.GetMouseButtonDown(0)) {
-            //playerAnim.SetAttack(true);
             //TODO change latter to just have the above or this condicion
-            playerAnimTorso.SetAttack(true);
-            playerAnimLegs.SetAttack(true);
+            player.SetAnimAttack(true);
+            player.isAttacking = true;
         }
     }
 
@@ -68,8 +64,7 @@ public class PlayerCombat : MonoBehaviour
         if (attackType <= 5 && attackType >= 0) {
             //playerAnim.SetCurretnWeapon(attackType);
             //TODO change latter to just have the above or this condicion
-            playerAnimTorso.SetCurretnWeapon(attackType);
-            playerAnimLegs.SetCurretnWeapon(attackType);
+            player.SetAnimCurrentWeapon(attackType);
 
             SetWeaponMesh();
         }

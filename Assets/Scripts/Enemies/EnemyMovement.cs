@@ -12,10 +12,14 @@ public class EnemyMovement : MonoBehaviour
     private float maxTimeToWait;
 
     public float moveSpeed = 5f;
+    public float rotateSpeed = 50f;
 
-    public Enemy enemy;
+    private Enemy enemy;
 
-    private Transform targetTransform;
+    [SerializeField]
+    private HumanoidBicectAnim torsoAnim;
+    [SerializeField]
+    private HumanoidBicectAnim legsAnim;
 
     [SerializeField]
     private List<Transform> wayPoints = new List<Transform>();
@@ -25,47 +29,75 @@ public class EnemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Enemy>();
+        enemy = GetComponent<Enemy>();
         currentWayPoint = 0;
         previewsWayPoint = -1;
 
-        targetTransform = wayPoints[0];
+        enemy.targetTransform = wayPoints[0];
     }
 
     // Update is called once per frame
 
     public void FollowTarget() {
         //TODO probrably tehre is a better place to put ChangeTarget
-
         if (enemy.fov.seeingPlayer) { // see the player therefore follow him
-            print(targetTransform +" + " + enemy.fov.currentTarget);
-            if (targetTransform == enemy.fov.currentTarget) {
-                if (Vector3.Distance(transform.position, targetTransform.position) > 0.25f) {
-                    transform.position += (targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+            if (enemy.targetTransform == enemy.fov.currentTarget) {
+                if (Vector3.Distance(transform.position, enemy.targetTransform.position) > enemy.enemyCombat.minDistToAttack) {
+                    transform.position += (enemy.targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+                    HandleRotation();
+                    enemy.SetAnimMoving(true);
                 }
+                //if not fall under the condition above then the enemy is attacking the target
             }
             else {
                 ChangeTarget();
             }
         }
 
-        else if (!enemy.fov.seeingPlayer && targetTransform.gameObject.layer == 8) { //was seeing player and now lost track of it (go back to way points)
+        else if (!enemy.fov.seeingPlayer && enemy.targetTransform.gameObject.layer == 8) { //was seeing player and now lost track of it (go back to way points)
             ChangeTarget();
         }
 
-        else if (Vector3.Distance(transform.position, targetTransform.position) > 0.25f) { //Go To WayPoints when not seeing player
-            transform.position += (targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+        else if (Vector3.Distance(transform.position, enemy.targetTransform.position) > 0.25f) { //Go To WayPoints when not seeing player
+            transform.position += (enemy.targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+            HandleRotation();
+            enemy.SetAnimMoving(true);
         }
         else { // Change WayPoints if the IA reached a WayPoint
             ChangeTarget(); 
         }
 
+
+        Vector3 productVector = Vector3.Cross(transform.forward, (enemy.targetTransform.position - transform.position).normalized);
+        //if is moving and the y of the cross product between velocity and pointToLook is bigger than a threshold hten strafe 
+        if (Mathf.Abs(productVector.y) > 1.5) {
+            //playerAnim.SetPlayerStrafe(true);
+            //TODO change latter to just have the above or this condicion
+            enemy.SetAnimStrafing(true);
+        }
+        else {
+            //playerAnim.SetPlayerStrafe(false);
+            //TODO change latter to just have the above or this condicion
+            enemy.SetAnimStrafing(false);
+        }
+
         //TODO put logic for waitng after reaching waypoint
     }
+    
+    private void HandleRotation() {
+        Vector3 dirToTarget = (enemy.targetTransform.position - transform.position).normalized; //direction to target
+        Quaternion newRotation = Quaternion.LookRotation(dirToTarget); //rotation to achieve ideal look position
+
+        if (transform.rotation != newRotation) {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, rotateSpeed * Time.deltaTime); //rotate towards the object direction
+        }
+
+    }
+
 
     private void ChangeTarget() {
         if (enemy.fov.seeingPlayer) { // check if is seeing the player
-            targetTransform = enemy.fov.currentTarget; // set player has target 
+            enemy.targetTransform = enemy.fov.currentTarget; // set player has target 
         }                                                      //TODO transform targetTransform in to a Vector3
         else {
             SwitchWayPoint();
@@ -74,8 +106,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void SwitchWayPoint() {
 
-        if (targetTransform.gameObject.layer == 8) { //Called when the player was being followed and now need to go back to the old Way Point
-            targetTransform = wayPoints[currentWayPoint];
+        if (enemy.targetTransform.gameObject.layer == 8) { //Called when the player was being followed and now need to go back to the old Way Point
+            enemy.targetTransform = wayPoints[currentWayPoint];
         }
 
         else {
@@ -97,7 +129,7 @@ public class EnemyMovement : MonoBehaviour
                 previewsWayPoint = currentWayPoint;
                 currentWayPoint++;
             }
-            targetTransform = wayPoints[currentWayPoint];
+            enemy.targetTransform = wayPoints[currentWayPoint];
         }
 
     }
