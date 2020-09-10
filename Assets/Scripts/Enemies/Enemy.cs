@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamage, IDamageable
 {
@@ -14,6 +15,9 @@ public class Enemy : MonoBehaviour, IDamage, IDamageable
     public FieldOfView fov;
     public EnemyMovement enemyMovement; //TODO maybe refactor this to not be public
     public EnemyCombat enemyCombat;
+    private NavMeshAgent navAgent;
+
+    private CharacterController characterControl;
 
     [SerializeField]
     private HumanoidBicectAnim enemyAnimTorso;
@@ -22,8 +26,26 @@ public class Enemy : MonoBehaviour, IDamage, IDamageable
 
     public Transform targetTransform;
 
+    private Collider[] colliders;
+    private Rigidbody[] rigidBodys;
+
+    void Awake() {
+        colliders = GetComponentsInChildren<Collider>();
+        rigidBodys = GetComponentsInChildren<Rigidbody>();
+        characterControl = GetComponent<CharacterController>();
+        navAgent = GetComponent<NavMeshAgent>();
+    }
 
     void Start() {
+
+        foreach (Collider col in colliders) {
+            col.enabled = false;
+        }
+        foreach (Rigidbody rb in rigidBodys) {
+            rb.isKinematic = true;
+        }
+
+        characterControl.enabled = true;
         enemyCombat = GetComponent<EnemyCombat>();
         enemyMovement = GetComponent<EnemyMovement>();
     }
@@ -35,7 +57,11 @@ public class Enemy : MonoBehaviour, IDamage, IDamageable
             enemyCombat.AttackTarget();
         }
         else {
-            gameObject.SetActive(false);
+            if (alive) {
+                //EnableRagdoll();
+                gameObject.SetActive(false);
+                alive = false;
+            }
         }
     }
 
@@ -60,8 +86,26 @@ public class Enemy : MonoBehaviour, IDamage, IDamageable
         return damage;
     }
 
+    public NavMeshAgent GetNavAgent() {
+        return navAgent;
+    }
+
     public void OnDamage(int damage) {
         health -= damage;
-        print(gameObject.name + " Got hit!");
+    }
+
+
+    private void EnableRagdoll() {
+        GetComponent<Rigidbody>().useGravity = false;
+        enemyAnimTorso.EndAnimator(true);
+        enemyAnimLegs.EndAnimator(true);
+
+        foreach (Collider col in colliders) {
+            col.enabled = true;
+        }
+        foreach (Rigidbody rb in rigidBodys) {
+            rb.isKinematic = true;
+        }
+        
     }
 }

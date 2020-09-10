@@ -34,17 +34,17 @@ public class EnemyMovement : MonoBehaviour
         previewsWayPoint = -1;
 
         enemy.targetTransform = wayPoints[0];
+        enemy.GetNavAgent().destination = enemy.targetTransform.position;
     }
 
     // Update is called once per frame
 
     public void FollowTarget() {
-        //TODO probrably tehre is a better place to put ChangeTarget
+        //TODO probrably there is a better place to put ChangeTarget
         if (enemy.fov.seeingPlayer) { // see the player therefore follow him
             if (enemy.targetTransform == enemy.fov.currentTarget) {
                 if (Vector3.Distance(transform.position, enemy.targetTransform.position) > enemy.enemyCombat.minDistToAttack) {
-                    transform.position += (enemy.targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
-                    HandleRotation();
+                    enemy.GetNavAgent().destination = enemy.targetTransform.position; //if the enemy is in range and moving update its position
                     enemy.SetAnimMoving(true);
                 }
                 //if not fall under the condition above then the enemy is attacking the target
@@ -58,13 +58,14 @@ public class EnemyMovement : MonoBehaviour
             ChangeTarget();
         }
 
-        else if (Vector3.Distance(transform.position, enemy.targetTransform.position) > 0.25f) { //Go To WayPoints when not seeing player
-            transform.position += (enemy.targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
-            HandleRotation();
+        else if (Vector3.Distance(transform.position, enemy.targetTransform.position) > 5f) { //Go To WayPoints when not seeing player
+            //transform.position += (enemy.targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
+            //HandleRotation();
+            //print(enemy.GetNavAgent().destination);
             enemy.SetAnimMoving(true);
         }
         else { // Change WayPoints if the IA reached a WayPoint
-            ChangeTarget(); 
+            ChangeTarget();
         }
 
 
@@ -98,6 +99,7 @@ public class EnemyMovement : MonoBehaviour
     private void ChangeTarget() {
         if (enemy.fov.seeingPlayer) { // check if is seeing the player
             enemy.targetTransform = enemy.fov.currentTarget; // set player has target 
+            enemy.GetNavAgent().destination = enemy.targetTransform.position;
         }                                                      //TODO transform targetTransform in to a Vector3
         else {
             SwitchWayPoint();
@@ -108,6 +110,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (enemy.targetTransform.gameObject.layer == 8) { //Called when the player was being followed and now need to go back to the old Way Point
             enemy.targetTransform = wayPoints[currentWayPoint];
+            enemy.GetNavAgent().destination = enemy.targetTransform.position;
         }
 
         else {
@@ -130,6 +133,7 @@ public class EnemyMovement : MonoBehaviour
                 currentWayPoint++;
             }
             enemy.targetTransform = wayPoints[currentWayPoint];
+            enemy.GetNavAgent().destination = enemy.targetTransform.position;
         }
 
     }

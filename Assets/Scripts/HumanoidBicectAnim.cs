@@ -11,6 +11,8 @@ public class HumanoidBicectAnim : MonoBehaviour
     protected Player player;
     protected Enemy enemy;
 
+    private Collider[] col;
+
     void Start() {
 
         objAnim = GetComponent<Animator>();
@@ -83,5 +85,14 @@ public class HumanoidBicectAnim : MonoBehaviour
 
     public void SetStrafe(bool strafe) {
         objAnim.SetBool("IsStrafing", strafe);
+    }
+
+    public void EndAnimator(bool value) {
+        objAnim.enabled = value;
+    }
+
+    public void InstanciateProjectile() {
+        MagicHandler magicHandler = GetComponentInParent<MagicHandler>();
+        Instantiate(magicHandler.currentMagic.GetMagicPrefab(), magicHandler.magicSpawnPoint.position, magicHandler.magicSpawnPoint.rotation);
     }
 }
