@@ -76,10 +76,10 @@ public class PlayerMovement : MonoBehaviour
             player.SetAnimStrafing(false);
         }
 
-        //clear console
-        if (Input.GetKeyDown(KeyCode.Delete)) {
-            Utils.ClearLogConsole();
-        }
+        ////clear console
+        //if (Input.GetKeyDown(KeyCode.Delete)) {
+        //    Utils.ClearLogConsole();
+        //}
 
         Debug.DrawLine(playerMesh.position, pointToLook, Color.red); // player to mouse
         //Debug.DrawLine(transform.position, pointToLook, Color.red); // player to mouse

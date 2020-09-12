@@ -13,6 +13,7 @@ public class MagicHandler : MonoBehaviour
 
     public Transform magicSpawnPoint;
 
+
     // Start is called before the first frame update
     void Start() {
         currentMagic = null;
@@ -56,6 +57,32 @@ public class MagicHandler : MonoBehaviour
                 currentMagic = magic;
             }
         }
+    }
+
+    public class Magic {
+        private int id;
+        private string magicName;
+        private GameObject prefab;
+
+        public void SetMagic(int magicId, string magicN, GameObject magicPrefab) {
+            id = magicId;
+            magicName = magicN;
+            prefab = magicPrefab;
+        }
+
+        public int GetMagicId() {
+            return id;
+        }
+
+        public string GetMagicString() {
+            return magicName;
+        }
+
+
+        public GameObject GetMagicPrefab() {
+            return prefab;
+        }
+
     }
 
 

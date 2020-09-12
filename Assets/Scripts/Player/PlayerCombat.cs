@@ -25,13 +25,12 @@ public class PlayerCombat : MonoBehaviour {
     public void Attack() {
         if (!player.isAttacking) {
             SetAtkType();
+            if (Input.GetMouseButtonDown(0)) {
+                player.SetAnimAttack(true);
+                player.isAttacking = true;
+            }
         }
 
-        if (Input.GetMouseButtonDown(0)) {
-            //TODO change latter to just have the above or this condicion
-            player.SetAnimAttack(true);
-            player.isAttacking = true;
-        }
     }
 
     private void SetAtkType() {

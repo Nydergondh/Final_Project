@@ -6,21 +6,21 @@ using System.Collections;
 using System.Collections.Generic;
 
 public static class Utils {
-    static MethodInfo _clearConsoleMethod;
-    static MethodInfo clearConsoleMethod {
-        get {
-            if (_clearConsoleMethod == null) {
-                Assembly assembly = Assembly.GetAssembly(typeof(SceneView));
-                Type logEntries = assembly.GetType("UnityEditor.LogEntries");
-                _clearConsoleMethod = logEntries.GetMethod("Clear");
-            }
-            return _clearConsoleMethod;
-        }
-    }
+    //static MethodInfo _clearConsoleMethod;
+    //static MethodInfo clearConsoleMethod {
+    //    get {
+    //        if (_clearConsoleMethod == null) {
+    //            Assembly assembly = Assembly.GetAssembly(typeof(SceneView));
+    //            Type logEntries = assembly.GetType("UnityEditor.LogEntries");
+    //            _clearConsoleMethod = logEntries.GetMethod("Clear");
+    //        }
+    //        return _clearConsoleMethod;
+    //    }
+    //}
 
-    public static void ClearLogConsole() {
-        clearConsoleMethod.Invoke(new object(), null);
-    }
+    //public static void ClearLogConsole() {
+    //    clearConsoleMethod.Invoke(new object(), null);
+    //}
 
     public static Vector3 GetVectorFromAngle(float angle) {
         //angle  = 0 -> 360

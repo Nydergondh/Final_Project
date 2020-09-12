@@ -63,10 +63,10 @@ public class PlayerMovementTest : MonoBehaviour
             playerAnim.SetPlayerStrafe(false);
         }
 
-        //clear console
-        if (Input.GetKeyDown(KeyCode.Delete)) {
-            Utils.ClearLogConsole();
-        }
+        ////clear console
+        //if (Input.GetKeyDown(KeyCode.Delete)) {
+        //    Utils.ClearLogConsole();
+        //}
 
         Debug.DrawLine(transform.position, pointToLook, Color.red); // player to mouse
         Debug.DrawLine(velocityVector, transform.position, Color.yellow); //player speed

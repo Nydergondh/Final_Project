@@ -37,8 +37,6 @@ public class EnemyMovement : MonoBehaviour
         enemy.GetNavAgent().destination = enemy.targetTransform.position;
     }
 
-    // Update is called once per frame
-
     public void FollowTarget() {
         //TODO probrably there is a better place to put ChangeTarget
         if (enemy.fov.seeingPlayer) { // see the player therefore follow him
@@ -54,11 +52,15 @@ public class EnemyMovement : MonoBehaviour
             }
         }
 
+        else if (wayPoints.Count == 1 && !enemy.fov.seeingPlayer) { //if enemy is stationary TODO try to fix this
+            enemy.SetAnimMoving(false);
+        }
+
         else if (!enemy.fov.seeingPlayer && enemy.targetTransform.gameObject.layer == 8) { //was seeing player and now lost track of it (go back to way points)
             ChangeTarget();
         }
 
-        else if (Vector3.Distance(transform.position, enemy.targetTransform.position) > 5f) { //Go To WayPoints when not seeing player
+        else if (Vector3.Distance(transform.position, enemy.targetTransform.position) > enemy.GetNavAgent().stoppingDistance) { //Go To WayPoints when not seeing player
             //transform.position += (enemy.targetTransform.position - transform.position).normalized * moveSpeed * Time.deltaTime;
             //HandleRotation();
             //print(enemy.GetNavAgent().destination);
@@ -97,6 +99,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     private void ChangeTarget() {
+
         if (enemy.fov.seeingPlayer) { // check if is seeing the player
             enemy.targetTransform = enemy.fov.currentTarget; // set player has target 
             enemy.GetNavAgent().destination = enemy.targetTransform.position;
@@ -112,6 +115,10 @@ public class EnemyMovement : MonoBehaviour
             enemy.targetTransform = wayPoints[currentWayPoint];
             enemy.GetNavAgent().destination = enemy.targetTransform.position;
         }
+
+        //else if (wayPoints.Count == 1) {
+
+        //}
 
         else {
             if (currentWayPoint > previewsWayPoint && currentWayPoint < wayPoints.Count - 1) { // is going forward

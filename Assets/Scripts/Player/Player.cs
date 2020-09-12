@@ -10,6 +10,8 @@ public class Player : MonoBehaviour, IDamage, IDamageable
     public bool alive = true;
     public bool isAttacking = false; // TODO maybe refactor this like to other script 
 
+    public static Player player;
+
     private PlayerMovement playerMovement;
     private PlayerCombat playerCombat;
 
@@ -24,6 +26,15 @@ public class Player : MonoBehaviour, IDamage, IDamageable
 
     private Collider[] col;
     private Rigidbody[] rigidBodys;
+
+    void Awake() {
+        if (player != null) {
+            Destroy(gameObject);
+        }
+        else {
+            player = this;
+        }
+    }
 
     void Start() {
         
