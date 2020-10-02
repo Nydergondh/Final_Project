@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: a4cc18697d26c5a4aad7c4fb5e92fd4d
+ModelImporter:
+  serializedVersion: 19300
+  internalIDToNameTable:
+  - first:
+      74: -1730440777689949291
+    second: Sk Torso|0_TPose
+  - first:
+      74: -6320514207219338537
+    second: Sk Torso|1h_Attack
+  - first:
+      74: -2470621963135864882
+    second: Sk Torso|1h_Attack_Shield
+  - first:
+      74: -6396718444126004334
+    second: Sk Torso|1h_Idle
+  - first:
+      74: 1767995980641717081
+    second: Sk Torso|1h_Idle_Shield
+  - first:
+      74: 3578037652821702320
+    second: Sk Torso|1h_Rapier_Attack
+  - first:
+      74: 3837766011342654855
+    second: Sk Torso|1h_Rapier_Idle
+  - first:
+      74: 7873251245414052859
+    second: Sk Torso|2h_Attack
+  - first:
+      74: 6605441392758045275
+    second: Sk Torso|2h_Idle
+  - first:
+      74: -5291850985934198446
+    second: Sk Torso|2h_Throw
+  - first:
+      74: 6127032066079482280
+    second: Sk Torso|Cast_Attack
+  - first:
+      74: -6246307574644391478
+    second: Sk Torso|Cast_Attack_Shield
+  - first:
+      74: 4615971163376102598
+    second: Sk Torso|Cast_Charge
+  - first:
+      74: -1425719281586169687
+    second: Sk Torso|Idle
+  - first:
+      74: 2857211049454891110
+    second: Sk Torso|Staff_Attack
+  - first:
+      74: 819856523914340879
+    second: Sk Torso|Staff_Idle
+  - first:
+      74: 5609690222583978929
+    second: Sk Torso|Strafe
+  - first:
+      74: -5261988846561370985
+    second: Sk Torso|Unarmed_Attack
+  - first:
+      74: -457648959534229961
+    second: Sk Torso|Unarmed_Combat_Idle
+  - first:
+      74: 3912872068894867353
+    second: Sk Torso|Walk
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

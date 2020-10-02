@@ -20,22 +20,18 @@ public class EnemyCombat : MonoBehaviour
         if (enemy.fov.seeingPlayer) {
             //print(Vector3.Distance(transform.position, enemy.targetTransform.position));
             if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack && !enemy.isAttacking ) {
-                print("GotHere1");
                 enemy.SetAnimAttack(true);
                 enemy.isAttacking = true;
                 enemy.GetNavAgent().isStopped = true;
             }
             else if(enemy.isAttacking && Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) {
-                print("GotHere2");
                 enemy.GetNavAgent().isStopped = true;
             }
             else {
-                print("GotHere3");
                 enemy.GetNavAgent().isStopped = false;
             }
         }
         else {
-            print("GotHere4");
             enemy.GetNavAgent().isStopped = false;
         }
 

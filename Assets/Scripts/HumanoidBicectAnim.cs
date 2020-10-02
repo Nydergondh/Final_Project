@@ -61,6 +61,10 @@ public class HumanoidBicectAnim : MonoBehaviour
         return objAnim.GetBool("IsAttacking");
     }
 
+    public bool GetMoving() {
+        return objAnim.GetBool("IsMoving");
+    }
+
     public void SetHit(bool value) {
         objAnim.SetBool("Hitted", value);
     }

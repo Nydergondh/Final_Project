@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Transform playerMesh;
 
+    [SerializeField]
+    private LayerMask groundMask;
+
     public float moveSpeed = 3f;
     [SerializeField]
     private float strafeTreshhold = 1.5f;
@@ -30,10 +33,21 @@ public class PlayerMovement : MonoBehaviour
         float xSpeed, zSpeed;
         Vector3 movement;
 
-        //not sure how the z value works
-        Vector3 pointToLook = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.y - transform.position.y));
+        Vector3 pointToLook;
         Vector3 velocityVector;
         Vector3 productVector;
+
+        Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit groundPoint;
+        float rayLength = Mathf.Infinity;
+
+        if (Physics.Raycast(cameraRay, out groundPoint, rayLength, groundMask)) {
+            pointToLook = groundPoint.point;
+        }
+        else {
+            pointToLook = transform.position;
+        }
+
 
         xSpeed = Input.GetAxis("Horizontal");
         zSpeed = Input.GetAxis("Vertical");
@@ -55,14 +69,16 @@ public class PlayerMovement : MonoBehaviour
             //playerAnim.SetMoving(false);
 
             //TODO change latter to just have the above or this condicion
+            if (player.GetLegsAnim().GetAttack() && player.GetLegsAnim().GetMoving()) {
+                player.GetLegsAnim().SetAttack(false);
+            }
+
             player.SetAnimMoving(false);
 
         }
-        //change this later (too heavy and also a gambiara)
-        if (Vector3.Distance(pointToLook, transform.position) > 0.1f) {
-            playerMesh.LookAt(pointToLook);
-        }
 
+        playerMesh.LookAt(pointToLook);
+        
         productVector = Vector3.Cross(pointToLook - transform.position, velocityVector - transform.position);
         //if is moving and the y axis of the result cross product between velocity and pointToLook is bigger than a threshold then strafe 
         if (Mathf.Abs(velocityVector.magnitude) > 0.1f && Mathf.Abs(productVector.y) > strafeTreshhold) {
@@ -75,11 +91,6 @@ public class PlayerMovement : MonoBehaviour
             //TODO change latter to just have the above or this condicion
             player.SetAnimStrafing(false);
         }
-
-        ////clear console
-        //if (Input.GetKeyDown(KeyCode.Delete)) {
-        //    Utils.ClearLogConsole();
-        //}
 
         Debug.DrawLine(playerMesh.position, pointToLook, Color.red); // player to mouse
         //Debug.DrawLine(transform.position, pointToLook, Color.red); // player to mouse

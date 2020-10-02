@@ -89,6 +89,15 @@ public class Player : MonoBehaviour, IDamage, IDamageable
         playerAnimTorso.SetCurretnWeapon(atkType);
         playerAnimLegs.SetCurretnWeapon(atkType);
     }
+
+    public HumanoidBicectAnim GetLegsAnim() {
+        return playerAnimLegs;
+    }
+
+    public HumanoidBicectAnim GetTorsoAnim() {
+        return playerAnimTorso;
+    }
+
     #endregion
 
     public int GetDamage() {
