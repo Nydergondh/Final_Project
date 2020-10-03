@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Cloath
-  m_Shader: {fileID: 4800000, guid: 51d3437645e807d48a0311a9e204d067, type: 3}
+  m_Shader: {fileID: 4800000, guid: eb89281564d5740419914e3c709887ea, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -74,5 +74,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.099562325, g: 0.055074673, b: 0.034243204, a: 1}
+    - _Color: {r: 0.21698111, g: 0.12104186, b: 0.076762185, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

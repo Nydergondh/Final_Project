@@ -95,8 +95,20 @@ public class HumanoidBicectAnim : MonoBehaviour
         objAnim.enabled = value;
     }
 
-    public void InstanciateProjectile() {
+    public void UseMagic() {
         MagicHandler magicHandler = GetComponentInParent<MagicHandler>();
-        Instantiate(magicHandler.currentMagic.GetMagicPrefab(), magicHandler.magicSpawnPoint.position, magicHandler.magicSpawnPoint.rotation);
+        print("GotHere");
+        if (magicHandler.currentMagic.magicType == MagicHandler.MagicType.Projectile) {
+            Instantiate(magicHandler.currentMagic.GetMagicPrefab(), magicHandler.magicSpawnPoint.position, magicHandler.magicSpawnPoint.rotation);
+        }
+
+        else {
+            switch (magicHandler.currentMagic.GetMagicId()) {
+                //invisibility
+                case 3:
+                    StartCoroutine(magicHandler.BecomeInvisible());
+                    break;
+            }
+        }
     }
 }

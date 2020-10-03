@@ -15,6 +15,7 @@ public class WallProjectile : MonoBehaviour, IDamage {
 
     private void Start() {
         col = GetComponentInChildren<Collider>();
+        Destroy(gameObject,3f);
     }
 
     // Update is called once per frame

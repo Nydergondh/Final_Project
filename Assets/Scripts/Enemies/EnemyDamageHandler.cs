@@ -11,7 +11,6 @@ public class EnemyDamageHandler : MonoBehaviour
             if (other.GetComponent<IDamageable>() != null) {
                 //get your damage on parent (Enemy/Player) and apply it on the target
                 other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage());
-                print("GotCalled");
                 //can make this more optimal by doing it on start and accessing variables on the trigger event
             }
         }

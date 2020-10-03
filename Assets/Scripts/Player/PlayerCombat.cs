@@ -31,6 +31,29 @@ public class PlayerCombat : MonoBehaviour {
             }
         }
 
+        MagicSwitching();
+    }
+
+    private void MagicSwitching() {
+        if (Input.GetButtonDown("Next Magic")) {
+            //if the current magic is the last magic in the list
+            if (magicHandler.currentMagicId + 1 == MagicHandler.allMagics.Count) {
+                magicHandler.UpdateCurrentMagic(0);
+            }
+            else {
+                magicHandler.UpdateCurrentMagic(magicHandler.currentMagicId + 1);
+            }
+
+        }
+        else if (Input.GetButtonDown("Previous Magic")) {
+            //if the current magic is the first magic in the list
+            if (magicHandler.currentMagicId == 0) {
+                magicHandler.UpdateCurrentMagic(MagicHandler.allMagics.Count - 1);
+            }
+            else {
+                magicHandler.UpdateCurrentMagic(magicHandler.currentMagicId - 1);
+            }
+        }
     }
 
     private void SetAtkType() {
@@ -57,7 +80,6 @@ public class PlayerCombat : MonoBehaviour {
 
         else if (Input.GetKeyDown(KeyCode.Alpha5)) {
             attackType = 5;
-            magicHandler.UpdateCurrentMagic(0); //TODO IMPORTANT!!! change this latter to be controlled by UI or another way (numbers used for wepaons)
         }
 
         if (attackType <= 5 && attackType >= 0) {
@@ -84,9 +106,5 @@ public class PlayerCombat : MonoBehaviour {
         }
 
     }
-
-    //public void CreateProjectile() {
-    //    Instantiate(magicHandler.currentMagic.GetMagicPrefab(), magicSpawnPoint.position, magicSpawnPoint.rotation);
-    //}
 
 }
