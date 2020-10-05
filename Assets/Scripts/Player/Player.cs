@@ -8,14 +8,17 @@ public class Player : MonoBehaviour, IDamage, IDamageable
     protected int health = 1;
     public int damage = 1;
     public bool alive = true;
-    public bool isAttacking = false; // TODO maybe refactor this like to other script 
+    public bool isAttacking = false; // TODO maybe refactor this like to other script (Status)
+    public bool isInvisible = false;
+    public bool timeSlowed = false;
+    public float timeSlowScale = 0.5f;
 
     public static Player player;
 
     private PlayerMovement playerMovement;
     private PlayerCombat playerCombat;
 
-    private CharacterController characterControl;
+    private CharacterController playerController;
 
     [SerializeField]
     private PlayerBisectAnim playerAnimTorso;
@@ -38,9 +41,10 @@ public class Player : MonoBehaviour, IDamage, IDamageable
 
     void Start() {
         
+        playerController = GetComponent<CharacterController>();
+
         col = GetComponentsInChildren<Collider>();
         rigidBodys = GetComponentsInChildren<Rigidbody>();
-        characterControl = GetComponent<CharacterController>();
 
         foreach (Collider collider in col) {
             collider.enabled = false;
@@ -52,7 +56,7 @@ public class Player : MonoBehaviour, IDamage, IDamageable
         playerCombat = GetComponent<PlayerCombat>();
         playerMovement = GetComponent<PlayerMovement>();
 
-        characterControl.enabled = true;
+        playerController.enabled = true;
     }
 
     void Update() {
@@ -111,7 +115,7 @@ public class Player : MonoBehaviour, IDamage, IDamageable
 
     private void EnableRagdoll() {
 
-        characterControl.enabled = false;
+        playerController.enabled = false;
 
         playerAnimTorso.EndAnimator(false);
         playerAnimLegs.EndAnimator(false);

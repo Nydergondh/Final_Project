@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class Status
 {
     private bool isInvisible;
+    private bool timeSlowed;
 
     #region get-setter
     public bool GetInvisible() {
@@ -12,6 +13,14 @@ public class Status
 
     public void SetInvisible(bool value) {
         isInvisible = value;
+    }
+
+    public bool GetTimeSlowed() {
+        return timeSlowed;
+    }
+
+    public void SetTimeSlowed(bool value) {
+        timeSlowed = value;
     }
 
     //public void GetInvisible() {

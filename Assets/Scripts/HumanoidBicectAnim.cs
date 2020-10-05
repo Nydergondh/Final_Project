@@ -69,6 +69,10 @@ public class HumanoidBicectAnim : MonoBehaviour
         objAnim.SetBool("Hitted", value);
     }
 
+    public void SetAnimSpeed(float value) {
+        objAnim.speed = value;
+    }
+
     public void UnsetAnimAttack() {
         objAnim.SetBool("IsAttacking", false);
     }
@@ -97,7 +101,7 @@ public class HumanoidBicectAnim : MonoBehaviour
 
     public void UseMagic() {
         MagicHandler magicHandler = GetComponentInParent<MagicHandler>();
-        print("GotHere");
+
         if (magicHandler.currentMagic.magicType == MagicHandler.MagicType.Projectile) {
             Instantiate(magicHandler.currentMagic.GetMagicPrefab(), magicHandler.magicSpawnPoint.position, magicHandler.magicSpawnPoint.rotation);
         }
@@ -107,6 +111,12 @@ public class HumanoidBicectAnim : MonoBehaviour
                 //invisibility
                 case 3:
                     StartCoroutine(magicHandler.BecomeInvisible());
+                    break;
+                case 4:
+                    StartCoroutine(magicHandler.WalkTroughWall());
+                    break;
+                case 5:
+                    StartCoroutine(magicHandler.TimeStop());
                     break;
             }
         }

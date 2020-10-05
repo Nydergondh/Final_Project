@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    private CharacterController controller;
+    private CharacterController playerControler;
     private PlayerAnimations playerAnim;
 
     private Player player;
@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        playerControler = GetComponent<CharacterController>();
         playerAnim = GetComponent<PlayerAnimations>();
         player = GetComponent<Player>();
     }
@@ -48,7 +48,6 @@ public class PlayerMovement : MonoBehaviour
             pointToLook = transform.position;
         }
 
-
         xSpeed = Input.GetAxis("Horizontal");
         zSpeed = Input.GetAxis("Vertical");
 
@@ -56,9 +55,12 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {
             movement = new Vector3(xSpeed * moveSpeed, 0, zSpeed * moveSpeed);
             movement *= (Mathf.Abs(xSpeed) == 1 && Mathf.Abs(zSpeed) == 1) ? 0.7f : 1; //set the movement vector to 0.7 if player is moving on both axis
+            if (player.timeSlowed) {
+                movement *= 2;//TODO IMPORTANT Change this to have more concistency (do math son)
+            }
             velocityVector = new Vector3(movement.x + transform.position.x, 0, movement.z + transform.position.z);
 
-            controller.SimpleMove(movement);
+            playerControler.SimpleMove(movement);
 
             //TODO change latter to just have the above or this condicion
             player.SetAnimMoving(true);
@@ -76,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
             player.SetAnimMoving(false);
 
         }
-
         playerMesh.LookAt(pointToLook);
         
         productVector = Vector3.Cross(pointToLook - transform.position, velocityVector - transform.position);
