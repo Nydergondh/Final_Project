@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimations : HumanoidAnimations {
 
-    public void SetPlayerStrafe(bool value) {
+    public void SetStrafe(bool value) {
         objAnim.SetBool("IsStrafing", value);
     }
 

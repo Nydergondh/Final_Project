@@ -94,9 +94,7 @@ public class EnemyMovement : MonoBehaviour
         if (transform.rotation != newRotation) {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, newRotation, rotateSpeed * Time.deltaTime); //rotate towards the object direction
         }
-
     }
-
 
     private void ChangeTarget() {
 

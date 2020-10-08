@@ -5,9 +5,26 @@ using UnityEngine;
 public class HumanoidAnimations : MonoBehaviour
 {
     protected Animator objAnim;
+    //TODO maybe refactor bellow (didn't know other way to do this at the time being)
+    protected bool isPlayer;
+    protected Player_Test player;
+    protected Enemy enemy;
 
-    private void Awake() {
+    private Collider[] col;
+
+    void Start() {
+
         objAnim = GetComponent<Animator>();
+
+        if (GetComponentInParent<Enemy>() != null) {
+            enemy = GetComponentInParent<Enemy>();
+            isPlayer = false;
+        }
+        else {
+            isPlayer = true;
+            player = GetComponent<Player_Test>();
+        }
+
     }
 
     public void SetVelocity(Vector2 vel) {
@@ -43,7 +60,64 @@ public class HumanoidAnimations : MonoBehaviour
         return objAnim.GetBool("IsAttacking");
     }
 
+    public bool GetMoving() {
+        return objAnim.GetBool("IsMoving");
+    }
+
     public void SetHit(bool value) {
         objAnim.SetBool("Hitted", value);
+    }
+
+    public void SetAnimSpeed(float value) {
+        objAnim.speed = value;
+    }
+
+    public void UnsetAnimAttack() {
+        objAnim.SetBool("IsAttacking", false);
+    }
+
+    public void UnsetAttack() { //WARNING use this only in the torso anim of the humanoid (using it twice can break stuff!).
+        if (isPlayer) {
+            player.isAttacking = false;
+        }
+        else {
+            enemy.isAttacking = false;
+        }
+    }
+
+    IEnumerator WaitAttackAgain() {
+        yield return new WaitForSeconds(0.25f); //TODO change to a variable later
+        UnsetAttack();
+    }
+
+    public void SetStrafe(bool strafe) {
+        objAnim.SetBool("IsStrafing", strafe);
+    }
+
+    public void EndAnimator(bool value) {
+        objAnim.enabled = value;
+    }
+
+    public void UseMagic() {
+        MagicHandler magicHandler = GetComponentInParent<MagicHandler>();
+
+        if (magicHandler.currentMagic.magicType == MagicHandler.MagicType.Projectile) {
+            Instantiate(magicHandler.currentMagic.GetMagicPrefab(), magicHandler.magicSpawnPoint.position, magicHandler.magicSpawnPoint.rotation);
+        }
+
+        else {
+            switch (magicHandler.currentMagic.GetMagicId()) {
+                //invisibility
+                case 3:
+                    StartCoroutine(magicHandler.BecomeInvisible());
+                    break;
+                case 4:
+                    StartCoroutine(magicHandler.WalkTroughWall());
+                    break;
+                case 5:
+                    StartCoroutine(magicHandler.TimeStop());
+                    break;
+            }
+        }
     }
 }

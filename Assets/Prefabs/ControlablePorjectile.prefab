@@ -151,7 +151,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1536
   projSpeed: 5
-  projRotateSpeed: 200
+  projRotateSpeed: 500
   isActive: 1
   damage: 1
 --- !u!65 &2788015796225603497

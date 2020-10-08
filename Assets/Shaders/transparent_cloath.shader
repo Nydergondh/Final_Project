@@ -12,6 +12,7 @@ Shader "Transparent/Diffuse ZWrite Cloath" {
 
 		// extra pass that renders to depth buffer only
 		Pass {
+			Cull Off
 			ZWrite On
 			ColorMask 0
 		}

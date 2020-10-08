@@ -8,7 +8,13 @@ public class SceneRestarter : MonoBehaviour
     private bool restarting = false;
 
     private void Update() {
-        if (!Player.player.alive && !restarting) {
+        //if (!Player.player.alive && !restarting) {
+        //    StartCoroutine(RestartGame());
+        //}
+        //if (Input.GetKey(KeyCode.Escape)) {
+        //    Application.Quit();
+        //}
+        if (!Player_Test.player.alive && !restarting) {
             StartCoroutine(RestartGame());
         }
         if (Input.GetKey(KeyCode.Escape)) {

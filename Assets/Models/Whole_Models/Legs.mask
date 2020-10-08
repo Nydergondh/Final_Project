@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Legs
+  m_Mask: 00000000000000000000000001000000010000000000000000000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Arm Armor
+    m_Weight: 0
+  - m_Path: Breastplate
+    m_Weight: 0
+  - m_Path: Coat Top
+    m_Weight: 0
+  - m_Path: Greaves
+    m_Weight: 0
+  - m_Path: Pants
+    m_Weight: 0
+  - m_Path: Sk Whole
+    m_Weight: 1
+  - m_Path: Sk Whole/Root
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/Elbow.IK.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Elbow.IK.L/Elbow.IK.L_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Elbow.IK.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Elbow.IK.R/Elbow.IK.R_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Foot.IK.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Foot.IK.L/Foot.IK.L_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Foot.IK.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Foot.IK.R/Foot.IK.R_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Hand.IK.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Hand.IK.L/Hand.IK.L_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Hand.IK.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Hand.IK.R/Hand.IK.R_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/spine
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/Hood Cloth Physics
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/neck
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/neck/head
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/neck/head/Crown
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/neck/head/head_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/hand.L.001
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/hand.L.001/hand.L.002
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/hand.L.001/hand.L.002/hand.L.003
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/hand.L.001/hand.L.002/hand.L.003/hand.L.003_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/Thumb.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/Thumb.L/Thumb.L.001
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/Thumb.L/Thumb.L.001/Thumb.L.002
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/Thumb.L/Thumb.L.001/Thumb.L.002/Thumb.L.003
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/Thumb.L/Thumb.L.001/Thumb.L.002/Thumb.L.003/Thumb.L.003_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/weapon.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.L/upper_arm.L/forearm.L/hand.L/weapon.L/weapon.L_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/hand.R.001
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/hand.R.001/hand.R.002
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/hand.R.001/hand.R.002/hand.R.003
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/hand.R.001/hand.R.002/hand.R.003/hand.R.003_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/Thumb.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/Thumb.R/Thumb.R.001
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/Thumb.R/Thumb.R.001/Thumb.R.002
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/Thumb.R/Thumb.R.001/Thumb.R.002/Thumb.R.003
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/Thumb.R/Thumb.R.001/Thumb.R.002/Thumb.R.003/Thumb.R.003_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/weapon.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/weapon.R/1h_Sword.Whole
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/spine/chest/shoulder.R/upper_arm.R/forearm.R/hand.R/weapon.R/weapon.R_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/hips/thigh.L
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.L/shin.L
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.L/shin.L/foot.L
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.L/shin.L/foot.L/toe.L
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.L/shin.L/foot.L/toe.L/toe.L_end
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.R
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.R/shin.R
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.R/shin.R/foot.R
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.R/shin.R/foot.R/toe.R
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/hips/thigh.R/shin.R/foot.R/toe.R/toe.R_end
+    m_Weight: 1
+  - m_Path: Sk Whole/Root/Knee.IK.L
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Knee.IK.L/Knee.IK.L_end
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Knee.IK.R
+    m_Weight: 0
+  - m_Path: Sk Whole/Root/Knee.IK.R/Knee.IK.R_end
+    m_Weight: 0
+  - m_Path: Whole Body Mesh
+    m_Weight: 0
