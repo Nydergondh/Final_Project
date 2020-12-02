@@ -6,10 +6,14 @@ public class PlayerCombat : MonoBehaviour {
     private Player player;
 
     private int attackType = 0;
+    public float timeinvertedControls = 3f;
+
     [SerializeField]
     private MeshRenderer[] weaponMeshes;
 
     private MagicHandler magicHandler;
+
+    float currentWaitTime = 0;
 
     //private KeyCode pressedWeapon;
     // Start is called before the first frame update
@@ -37,7 +41,7 @@ public class PlayerCombat : MonoBehaviour {
     private void MagicSwitching() {
         if (Input.GetButtonDown("Next Magic")) {
             //if the current magic is the last magic in the list
-            if (magicHandler.currentMagicId + 1 == MagicHandler.allMagics.Count) {
+            if (magicHandler.currentMagicId + 1 == magicHandler.allMagics.Count) {
                 magicHandler.UpdateCurrentMagic(0);
             }
             else {
@@ -48,7 +52,7 @@ public class PlayerCombat : MonoBehaviour {
         else if (Input.GetButtonDown("Previous Magic")) {
             //if the current magic is the first magic in the list
             if (magicHandler.currentMagicId == 0) {
-                magicHandler.UpdateCurrentMagic(MagicHandler.allMagics.Count - 1);
+                magicHandler.UpdateCurrentMagic(magicHandler.allMagics.Count - 1);
             }
             else {
                 magicHandler.UpdateCurrentMagic(magicHandler.currentMagicId - 1);
@@ -105,6 +109,20 @@ public class PlayerCombat : MonoBehaviour {
             }
         }
 
+    }
+
+    public IEnumerator InvertControls() {
+        //float currentWaitTime = 0;
+        currentWaitTime = 0;
+        player.invertControls = true;
+
+        while (currentWaitTime < timeinvertedControls) {
+            currentWaitTime += Time.deltaTime;
+            print("Time: "+ currentWaitTime);
+            yield return null;
+        }
+        print("Ended");
+        player.invertControls = false;
     }
 
 }

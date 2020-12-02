@@ -13,7 +13,7 @@ public class HumanoidBicectAnim : MonoBehaviour
 
     private Collider[] col;
 
-    void Start() {
+    void Awake() {
 
         objAnim = GetComponent<Animator>();
 

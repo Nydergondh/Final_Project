@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IDamage, IDamageable
     public bool isAttacking = false; // TODO maybe refactor this like to other script (Status)
     public bool isInvisible = false;
     public bool timeSlowed = false;
+    public bool invertControls { get; set; }
     public float timeSlowScale = 0.5f;
 
     public static Player player;
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour, IDamage, IDamageable
         else {
             player = this;
         }
+
+        invertControls = false;
     }
 
     void Start() {

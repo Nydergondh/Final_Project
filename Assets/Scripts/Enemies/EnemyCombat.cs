@@ -16,25 +16,48 @@ public class EnemyCombat : MonoBehaviour
     }
 
     public void AttackTarget() { //TODO maybe change name latter
+        //melle behavior
+        if (!enemy.isRanged) {
+
         // if the target is in range and not attacking already
-        if (enemy.fov.seeingPlayer) {
-            //print(Vector3.Distance(transform.position, enemy.targetTransform.position));
-            if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack && !enemy.isAttacking ) {
-                enemy.SetAnimAttack(true);
-                enemy.isAttacking = true;
-                enemy.GetNavAgent().isStopped = true;
-            }
-            else if(enemy.isAttacking && Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) {
-                enemy.GetNavAgent().isStopped = true;
+            if (enemy.fov.seeingPlayer && enemy.fov.hearingPlayer) {
+            
+                if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) {
+                    if (enemy.isAttacking) {
+                        enemy.GetNavAgent().isStopped = true;
+                    }
+                    else {
+                        enemy.SetAnimAttack(true);
+                        enemy.isAttacking = true;
+                    }
+                }
+                else {
+                    enemy.GetNavAgent().isStopped = false;
+                }
             }
             else {
                 enemy.GetNavAgent().isStopped = false;
             }
         }
-        else {
-            enemy.GetNavAgent().isStopped = false;
-        }
 
+        //ranged behavior
+        else {
+            if (enemy.fov.seeingPlayer) {
+                if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) {
+                    if (!enemy.isAttacking) {
+                        enemy.SetAnimAttack(true);
+                        enemy.isAttacking = true;
+                        enemy.GetNavAgent().Warp(transform.position);
+                    }
+                }
+                else {
+                    enemy.GetNavAgent().isStopped = false;
+                }
+            }
+            else {
+                enemy.GetNavAgent().isStopped = false;
+            }
+        }
     }
 
 }

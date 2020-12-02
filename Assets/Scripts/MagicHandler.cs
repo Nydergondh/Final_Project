@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MagicHandler : MonoBehaviour
 {
-    public static List<Magic> allMagics; // all magics currently in the game
+    public List<Magic> allMagics; // all magics currently in the game
     public GameObject[] magicPrefabs;  // objects you want to instanciate when magic is casted
 
     public int currentMagicId; // done for simplicity, TODO may refactor latter

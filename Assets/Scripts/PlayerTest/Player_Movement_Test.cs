@@ -43,8 +43,14 @@ public class Player_Movement_Test : MonoBehaviour
             pointToLook = transform.position;
         }
 
-        xSpeed = Input.GetAxis("Horizontal");
-        zSpeed = Input.GetAxis("Vertical");
+        if (!Player_Test.player.invertControls) {
+            xSpeed = Input.GetAxis("Horizontal");
+            zSpeed = Input.GetAxis("Vertical");
+        }
+        else {
+            xSpeed = Input.GetAxis("Horizontal") * -1;
+            zSpeed = Input.GetAxis("Vertical") * -1;
+        }
 
         //do all the move logic and calculation if the player recive any movement input at all
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {

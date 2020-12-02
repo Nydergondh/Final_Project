@@ -5,9 +5,9 @@ using UnityEngine;
 public class Player_Combat_Test: MonoBehaviour
 {
 
-    private int attackType = 0;
+    private int attackType = 6;
     [SerializeField]
-    private MeshRenderer[] weaponMeshes;
+    private GameObject[] weaponMeshes;
 
     private MagicHandler magicHandler;
 
@@ -18,7 +18,7 @@ public class Player_Combat_Test: MonoBehaviour
 
         for (int i = 1; i < weaponMeshes.Length; i++) {
             if (weaponMeshes[i] != null) {
-                weaponMeshes[i].enabled = false;
+                weaponMeshes[i].SetActive(false);
             }
         }
     }
@@ -38,7 +38,7 @@ public class Player_Combat_Test: MonoBehaviour
     private void MagicSwitching() {
         if (Input.GetButtonDown("Next Magic")) {
             //if the current magic is the last magic in the list
-            if (magicHandler.currentMagicId + 1 == MagicHandler.allMagics.Count) {
+            if (magicHandler.currentMagicId + 1 == magicHandler.allMagics.Count) {
                 magicHandler.UpdateCurrentMagic(0);
             }
             else {
@@ -49,7 +49,7 @@ public class Player_Combat_Test: MonoBehaviour
         else if (Input.GetButtonDown("Previous Magic")) {
             //if the current magic is the first magic in the list
             if (magicHandler.currentMagicId == 0) {
-                magicHandler.UpdateCurrentMagic(MagicHandler.allMagics.Count - 1);
+                magicHandler.UpdateCurrentMagic(magicHandler.allMagics.Count - 1);
             }
             else {
                 magicHandler.UpdateCurrentMagic(magicHandler.currentMagicId - 1);
@@ -83,7 +83,19 @@ public class Player_Combat_Test: MonoBehaviour
             attackType = 5;
         }
 
-        if (attackType <= 5 && attackType >= 0) {
+        else if (Input.GetKeyDown(KeyCode.Alpha6)) {
+            attackType = 6;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha7)) {
+            attackType = 7;
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha8)) {
+            attackType = 8;
+        }
+
+        if (attackType <= 8 && attackType >= 0) {
             //playerAnim.SetCurretnWeapon(attackType);
             //TODO change latter to just have the above or this condicion
             Player_Test.player.SetAnimCurrentWeapon(attackType);
@@ -96,14 +108,14 @@ public class Player_Combat_Test: MonoBehaviour
 
         for (int i = 1; i < weaponMeshes.Length; i++) {
             if (attackType == i) {
-                if (attackType == 4) {
-                    weaponMeshes[2].enabled = true;
-                }
-                weaponMeshes[i].enabled = true;
+                //if (attackType == 4) {
+                //    weaponMeshes[2].SetActive(true);
+                //}
+                weaponMeshes[i].SetActive(true);
             }
             else {
                 if (weaponMeshes[i] != null) {
-                    weaponMeshes[i].enabled = false;
+                    weaponMeshes[i].SetActive(false);
                 }
             }
         }

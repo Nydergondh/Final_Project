@@ -11,12 +11,14 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     public bool isAttacking = false; // TODO maybe refactor this like to other script (Status)
     public bool isInvisible = false;
     public bool timeSlowed = false;
+    public bool invertControls = false;
     public float timeSlowScale = 0.5f;
 
     public static Player_Test player;
 
     private Player_Movement_Test playerMovement;
     private Player_Combat_Test playerCombat;
+    private MagicHandler magicHandler;
 
     private CharacterController playerController;
 
@@ -64,9 +66,9 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         }
         else {
             if (alive) {
-                //EnableRagdoll();
-                alive = false;
-                gameObject.SetActive(false);
+                EnableRagdoll();
+                //alive = false;
+                //gameObject.SetActive(false);
             }
         }
     }
@@ -96,7 +98,6 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
     public void OnDamage(int damage) {
         health -= damage;
-        print(gameObject.name + " Got hit!");
     }
 
     private void EnableRagdoll() {
@@ -106,12 +107,15 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         playerAnimator.EndAnimator(false);
 
         foreach (Collider collider in col) {
-            collider.enabled = true;
+            if (!collider.isTrigger) {
+                collider.enabled = true;
+            }
         }
         foreach (Rigidbody rb in rigidBodys) {
             rb.isKinematic = false;
         }
         alive = false;
+
     }
     //TODO IMPORTANT!!! change this later (3 calls just to do instanciation in animation frame)
     //public void CallAnimProjectile(GameObject prefab, Vector3 pos, Quaternion rot) {

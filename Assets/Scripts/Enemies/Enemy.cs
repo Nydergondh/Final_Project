@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamage, IDamageable
 {
+    public bool isRanged = false;
+
     [SerializeField]
     protected int health = 1;
     public int damage = 1;
@@ -53,8 +55,8 @@ public class Enemy : MonoBehaviour, IDamage, IDamageable
     void Update() {
         if (health > 0) {
             fov.FindVisibleTarget();
-            enemyMovement.FollowTarget();
             enemyCombat.AttackTarget();
+            enemyMovement.FollowTarget();
         }
         else {
             if (alive) {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCombatTest : MonoBehaviour
 {
-    private int attackType = 0;
+    private int attackType = 6;
     [SerializeField]
     private MeshRenderer[] weaponMeshes;
 
@@ -70,15 +70,16 @@ public class PlayerCombatTest : MonoBehaviour
 
         for (int i = 1; i < weaponMeshes.Length; i++) {
             if (attackType == i) {
-                if (attackType == 4) {
-                    weaponMeshes[2].enabled = true;
-                }
+                //if (attackType == 4) { //Use when Shield Enabled
+                //    weaponMeshes[2].enabled = true;
+                //}
                 weaponMeshes[i].enabled = true;
             }
             else {
                 weaponMeshes[i].enabled = false;
             }
         }
+
     }
 
     public void UnsetAttack() {
