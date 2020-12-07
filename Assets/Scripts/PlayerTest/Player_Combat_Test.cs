@@ -10,6 +10,9 @@ public class Player_Combat_Test: MonoBehaviour
     private GameObject[] weaponMeshes;
 
     private MagicHandler magicHandler;
+    private PlayerAnimations playerAnim;
+
+    public bool isAttacking = false;
 
     //private KeyCode pressedWeapon;
     // Start is called before the first frame update
@@ -21,14 +24,16 @@ public class Player_Combat_Test: MonoBehaviour
                 weaponMeshes[i].SetActive(false);
             }
         }
+
+        playerAnim = GetComponent<PlayerAnimations>();
     }
 
     public void Attack() {
-        if (!Player_Test.player.isAttacking) {
+        if (!isAttacking) {
             SetAtkType();
             if (Input.GetMouseButtonDown(0)) {
-                Player_Test.player.SetAnimAttack(true);
-                Player_Test.player.isAttacking = true;
+                playerAnim.SetAttack(true);
+                isAttacking = true;
             }
         }
 
@@ -98,10 +103,14 @@ public class Player_Combat_Test: MonoBehaviour
         if (attackType <= 8 && attackType >= 0) {
             //playerAnim.SetCurretnWeapon(attackType);
             //TODO change latter to just have the above or this condicion
-            Player_Test.player.SetAnimCurrentWeapon(attackType);
+            playerAnim.SetCurretnWeapon(attackType);
             SetWeaponMesh();
         }
 
+    }
+
+    public void UnsetAttack() {
+        isAttacking = false;
     }
 
     private void SetWeaponMesh() {

@@ -8,7 +8,6 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     protected int health = 1;
     public int damage = 1;
     public bool alive = true;
-    public bool isAttacking = false; // TODO maybe refactor this like to other script (Status)
     public bool isInvisible = false;
     public bool timeSlowed = false;
     public bool invertControls = false;
@@ -18,10 +17,12 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
     private Player_Movement_Test playerMovement;
     private Player_Combat_Test playerCombat;
+
     private MagicHandler magicHandler;
 
     private CharacterController playerController;
 
+    [HideInInspector]
     private PlayerAnimations playerAnimator;
 
     public Transform targetTransform;
@@ -73,25 +74,6 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         }
     }
 
-    #region anim seters
-    public void SetAnimAttack(bool value) {
-        playerAnimator.SetAttack(value);
-    }
-
-    public void SetAnimMoving(bool value) {
-        playerAnimator.SetMoving(value);
-    }
-
-    public void SetAnimStrafing(bool value) {
-        playerAnimator.SetStrafe(value);
-    }
-
-    public void SetAnimCurrentWeapon(int atkType) {
-        playerAnimator.SetCurretnWeapon(atkType);
-    }
-
-    #endregion
-
     public int GetDamage() {
         return damage;
     }
@@ -104,7 +86,7 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
         playerController.enabled = false;
 
-        playerAnimator.EndAnimator(false);
+        playerAnimator.SetAlive(false);
 
         foreach (Collider collider in col) {
             if (!collider.isTrigger) {
@@ -117,8 +99,5 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         alive = false;
 
     }
-    //TODO IMPORTANT!!! change this later (3 calls just to do instanciation in animation frame)
-    //public void CallAnimProjectile(GameObject prefab, Vector3 pos, Quaternion rot) {
-    //    playerAnimTorso.InstanciateProjectile(prefab, pos, rot);
-    //}
+    
 }

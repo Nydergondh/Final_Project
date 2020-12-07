@@ -8,7 +8,10 @@ public class HumanoidAnimations : MonoBehaviour
     //TODO maybe refactor bellow (didn't know other way to do this at the time being)
     protected bool isPlayer;
     protected Player_Test player;
-    protected Enemy enemy;
+    protected Enemy_Test enemy;
+
+    protected Player_Combat_Test playerCombat;
+    protected EnemyCombat_Test enemyCombat;
 
     private Collider[] col;
 
@@ -16,13 +19,15 @@ public class HumanoidAnimations : MonoBehaviour
 
         objAnim = GetComponent<Animator>();
 
-        if (GetComponentInParent<Enemy>() != null) {
-            enemy = GetComponentInParent<Enemy>();
+        if (GetComponent<Enemy_Test>() != null) {
+            enemy = GetComponent<Enemy_Test>();
+            enemyCombat = GetComponent<EnemyCombat_Test>();
             isPlayer = false;
         }
         else {
             isPlayer = true;
             player = GetComponent<Player_Test>();
+            playerCombat = GetComponent<Player_Combat_Test>();
         }
 
     }
@@ -43,6 +48,7 @@ public class HumanoidAnimations : MonoBehaviour
     public void SetJump(bool value) {
         objAnim.SetBool("Jumping", value);
     }
+
 
     public void SetHit(bool value, int newHealth) {
 
@@ -76,25 +82,21 @@ public class HumanoidAnimations : MonoBehaviour
         objAnim.SetBool("IsAttacking", false);
     }
 
-    public void UnsetAttack() { //WARNING use this only in the torso anim of the humanoid (using it twice can break stuff!).
-        if (isPlayer) {
-            player.isAttacking = false;
-        }
-        else {
-            enemy.isAttacking = false;
-        }
-    }
-
     IEnumerator WaitAttackAgain() {
         yield return new WaitForSeconds(0.25f); //TODO change to a variable later
-        UnsetAttack();
+        if (isPlayer) {
+            playerCombat.UnsetAttack();
+        }
+        else {
+            enemyCombat.UnsetAttack();
+        }
     }
 
     public void SetStrafe(bool strafe) {
         objAnim.SetBool("IsStrafing", strafe);
     }
 
-    public void EndAnimator(bool value) {
+    public void SetAlive(bool value) {
         objAnim.enabled = value;
     }
 

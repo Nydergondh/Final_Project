@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player_Movement_Test : MonoBehaviour
 {
-
     private CharacterController playerControler;
     private PlayerAnimations playerAnim;
 
@@ -64,7 +63,7 @@ public class Player_Movement_Test : MonoBehaviour
             playerControler.SimpleMove(movement);
 
             //TODO change latter to just have the above or this condicion
-            Player_Test.player.SetAnimMoving(true);
+            playerAnim.SetMoving(true);
 
         }
         else {
@@ -72,11 +71,11 @@ public class Player_Movement_Test : MonoBehaviour
             //playerAnim.SetMoving(false);
 
             //TODO see the equivalent to this in the animator parameters
-            if (Player_Test.player.isAttacking) {
-                //player.GetLegsAnim().SetAttack(false);
-            }
+            //if (Player_Test.player.isAttacking) {
+            //    //player.GetLegsAnim().SetAttack(false);
+            //}
 
-            Player_Test.player.SetAnimMoving(false);
+            playerAnim.SetMoving(false);
 
         }
         playerMesh.LookAt(pointToLook);
@@ -86,12 +85,12 @@ public class Player_Movement_Test : MonoBehaviour
         if (Mathf.Abs(velocityVector.magnitude) > 0.1f && Mathf.Abs(productVector.y) > strafeTreshhold) {
             //playerAnim.SetPlayerStrafe(true);
             //TODO change latter to just have the above or this condicion
-            Player_Test.player.SetAnimStrafing(true);
+            playerAnim.SetStrafe(true);
         }
         else {
             //playerAnim.SetPlayerStrafe(false);
             //TODO change latter to just have the above or this condicion
-            Player_Test.player.SetAnimStrafing(false);
+            playerAnim.SetStrafe(false);
         }
 
         Debug.DrawLine(playerMesh.position, pointToLook, Color.red); // player to mouse
