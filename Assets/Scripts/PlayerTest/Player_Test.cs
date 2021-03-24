@@ -30,6 +30,8 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     private Collider[] col;
     private Rigidbody[] rigidBodys;
 
+    public bool _isMakingNoise = false;
+
     void Awake() {
         if (player != null) {
             Destroy(gameObject);
@@ -63,6 +65,7 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     void Update() {
         if (health > 0) {
             playerMovement.Move();
+            playerMovement.MakingNoise();
             playerCombat.Attack();
         }
         else {

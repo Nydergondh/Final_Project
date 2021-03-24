@@ -53,6 +53,9 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         enemyCombat = GetComponent<EnemyCombat_Test>();
         enemyMovement = GetComponent<EnemyMovement_Test>();
         fov = GetComponent<FieldOfView_Test>();
+
+        navAgent.stoppingDistance = enemyCombat.minDistToAttack;
+        navAgent.speed = enemyMovement.patrolSpeed;
     }
 
     void Update() {

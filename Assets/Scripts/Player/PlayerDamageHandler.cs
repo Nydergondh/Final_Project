@@ -12,6 +12,16 @@ public class PlayerDamageHandler : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        if (targetLayer == (targetLayer | 1 << other.gameObject.layer)) {
+            if (other.GetComponent<IDamageable>() != null) {
+                //get your damage on parent (Enemy/Player) and apply it on the target
+                other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage());
+                //can make this more optimal by doing it on start and accessing variables on the trigger event
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other) {
         //check if the layer triggered matches with the target layer
         if (targetLayer == (targetLayer | 1 << other.gameObject.layer)) {
             if (other.GetComponent<IDamageable>() != null) {

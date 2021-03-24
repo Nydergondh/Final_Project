@@ -24,6 +24,7 @@ public class EnemyMovement : MonoBehaviour
     private List<Transform> wayPoints = new List<Transform>();
     private int currentWayPoint; // used has index for acess the list of way Points
     private int previewsWayPoint;
+    public bool reversePathAtEnd = false;
 
     // Start is called before the first frame update
     void Start()
@@ -188,8 +189,14 @@ public class EnemyMovement : MonoBehaviour
                 }
 
                 else if (currentWayPoint == wayPoints.Count - 1 && currentWayPoint > previewsWayPoint) { // is going forward and now gonna go back to 0
-                    previewsWayPoint = currentWayPoint;
-                    currentWayPoint--;
+                    if (reversePathAtEnd) { 
+                        previewsWayPoint = currentWayPoint;
+                        currentWayPoint--;
+                    }
+                    else {
+                        previewsWayPoint = -1;
+                        currentWayPoint = 0;
+                    }
                 }
 
                 else if (currentWayPoint < previewsWayPoint && currentWayPoint != 0) { // is going backwords to 0
@@ -197,8 +204,14 @@ public class EnemyMovement : MonoBehaviour
                     currentWayPoint--;
                 }
                 else if (currentWayPoint < previewsWayPoint && currentWayPoint == 0) { // is comming backwards to 0 and its time to go forward again
-                    previewsWayPoint = currentWayPoint;
-                    currentWayPoint++;
+                    if (reversePathAtEnd) {
+                        previewsWayPoint = currentWayPoint;
+                        currentWayPoint++;
+                    }
+                    else {
+                        previewsWayPoint = -1;
+                        currentWayPoint = 0;
+                    }
                 }
             }
             if (wayPoints.Count > 0) {

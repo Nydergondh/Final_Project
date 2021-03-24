@@ -20,9 +20,14 @@ public class Player_Movement_Test : MonoBehaviour
 
     public float GroundDistance = 0.2f;
     public LayerMask Ground;
+    public bool makingNoise = false;
 
     private Vector3 _velocity;
     public bool _isGrounded = false;
+
+    public bool _isMoving = false;
+    public float timeToMakeNoise = 1f;
+    private float currentNoiseTime = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -66,6 +71,7 @@ public class Player_Movement_Test : MonoBehaviour
 
         //do all the move logic and calculation if the player recive any movement input at all
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical")) {
+            _isMoving = true;
             movement = new Vector3(xSpeed * moveSpeed, 0, zSpeed * moveSpeed);
             movement *= (Mathf.Abs(xSpeed) == 1 && Mathf.Abs(zSpeed) == 1) ? 0.7f : 1; //set the movement vector to 0.7 if player is moving on both axis
             if (Player_Test.player.timeSlowed) {
@@ -77,6 +83,7 @@ public class Player_Movement_Test : MonoBehaviour
             playerAnim.SetMoving(true);
         }
         else {
+            _isMoving = false;
             _velocity = Vector3.zero;
             playerAnim.SetMoving(false);
         }
@@ -105,6 +112,22 @@ public class Player_Movement_Test : MonoBehaviour
         //Debug.DrawLine(velocityVector, transform.position, Color.yellow); //player speed
         //Debug.DrawLine(velocityVector, pointToLook, Color.blue); // (mouse - player speed) vector
     }
+
+    public void MakingNoise() {
+        if (_isMoving && currentNoiseTime < timeToMakeNoise) {
+            currentNoiseTime += Time.deltaTime;
+        }
+        else if (_isMoving && currentNoiseTime > timeToMakeNoise) {
+            currentNoiseTime = timeToMakeNoise;
+            Player_Test.player._isMakingNoise = true;
+        }
+        //TODO: Add time to stop making noise here
+        else if (!_isMoving) {
+            currentNoiseTime = 0;
+            Player_Test.player._isMakingNoise = false;
+        }
+    }
+
     void OnControllerColliderHit(ControllerColliderHit hit) {
 
         Rigidbody body = hit.collider.attachedRigidbody;
@@ -118,8 +141,6 @@ public class Player_Movement_Test : MonoBehaviour
         if (hit.moveDirection.y < -0.3) {
             return;
         }
-
-        print("Called " + hit.collider.attachedRigidbody.name);
 
         // Calculate push direction from move direction,
         // we only push objects to the sides never up and down
