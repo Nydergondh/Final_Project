@@ -5,9 +5,10 @@ using UnityEngine;
 public class Player_Combat_Test: MonoBehaviour
 {
 
-    private int attackType = 6;
+    private int attackType = 0;
     [SerializeField]
-    private GameObject[] weaponMeshes;
+    private GameObject[] weaponObj;
+    public Weapom currentWeapom; 
 
     private MagicHandler magicHandler;
     private PlayerAnimations playerAnim;
@@ -19,9 +20,9 @@ public class Player_Combat_Test: MonoBehaviour
     void Start() {
         magicHandler = GetComponent<MagicHandler>();
 
-        for (int i = 1; i < weaponMeshes.Length; i++) {
-            if (weaponMeshes[i] != null) {
-                weaponMeshes[i].SetActive(false);
+        for (int i = 1; i < weaponObj.Length; i++) {
+            if (weaponObj[i] != null) {
+                weaponObj[i].SetActive(false);
             }
         }
 
@@ -64,47 +65,26 @@ public class Player_Combat_Test: MonoBehaviour
 
     private void SetAtkType() {
         //unarmed
-        if (Input.GetKeyDown(KeyCode.Alpha0)) {
-            attackType = 0;
-        }
+
         //rapier
-        else if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            attackType = 1;
-        }
+
         //1h sword
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            attackType = 2;
-        }
+
         //2h sword
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            attackType = 3;
-        }
+
+        //Halbert
+
         //shiled
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) {
-            attackType = 4;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha5)) {
-            attackType = 5;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha6)) {
-            attackType = 6;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha7)) {
-            attackType = 7;
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha8)) {
-            attackType = 8;
-        }
 
         if (attackType <= 8 && attackType >= 0) {
             //playerAnim.SetCurretnWeapon(attackType);
             //TODO change latter to just have the above or this condicion
             playerAnim.SetCurretnWeapon(attackType);
-            SetWeaponMesh();
+
+            SetWeapomId();
+            if (attackType >= 0 && attackType <= 8) {
+                SetWeaponMesh();
+            }
         }
 
     }
@@ -113,22 +93,25 @@ public class Player_Combat_Test: MonoBehaviour
         isAttacking = false;
     }
 
-    private void SetWeaponMesh() {
+    private int SetWeapomId() {
+        if (currentWeapom != null) {
+            attackType = currentWeapom.id;
+        }
+        else{
+            attackType = 0;
+        }
+        return attackType;
+    }
 
-        for (int i = 1; i < weaponMeshes.Length; i++) {
-            if (attackType == i) {
-                //if (attackType == 4) {
-                //    weaponMeshes[2].SetActive(true);
-                //}
-                weaponMeshes[i].SetActive(true);
+    private void SetWeaponMesh() {
+        foreach (GameObject weapom in weaponObj) {
+            if (weapom == currentWeapom.weaponObj) {
+                weapom.SetActive(true);
             }
             else {
-                if (weaponMeshes[i] != null) {
-                    weaponMeshes[i].SetActive(false);
-                }
+                weapom.SetActive(true);
             }
         }
-
     }
 
 }

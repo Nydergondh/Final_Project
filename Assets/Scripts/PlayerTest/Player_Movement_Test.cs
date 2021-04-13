@@ -12,6 +12,8 @@ public class Player_Movement_Test : MonoBehaviour
 
     [SerializeField]
     private LayerMask groundMask;
+    [SerializeField]
+    private LayerMask enemyMask;
 
     public float moveSpeed = 3f;
     public float pushPower = 5f;
@@ -19,7 +21,6 @@ public class Player_Movement_Test : MonoBehaviour
     private float strafeTreshhold = 1.5f;
 
     public float GroundDistance = 0.2f;
-    public LayerMask Ground;
     public bool makingNoise = false;
 
     private Vector3 _velocity;
@@ -40,7 +41,6 @@ public class Player_Movement_Test : MonoBehaviour
         Vector3 movement;
 
         Vector3 pointToLook;
-        Vector3 velocityVector;
         Vector3 productVector;
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -48,7 +48,7 @@ public class Player_Movement_Test : MonoBehaviour
         float rayLength = Mathf.Infinity;
 
         if (Physics.Raycast(cameraRay, out groundPoint, rayLength, groundMask)) {
-            pointToLook = groundPoint.point;
+            pointToLook = new Vector3(groundPoint.point.x, transform.position.y, groundPoint.point.z);
         }
         else {
             pointToLook = transform.position;
@@ -65,7 +65,7 @@ public class Player_Movement_Test : MonoBehaviour
 
 
         //Grounded Logic (to Do gravity)
-        _isGrounded = Physics.CheckSphere(transform.position, GroundDistance, Ground, QueryTriggerInteraction.Ignore);
+        _isGrounded = Physics.CheckSphere(transform.position, GroundDistance, groundMask, QueryTriggerInteraction.Ignore);
         if (_isGrounded && _velocity.y < 0)
             _velocity.y = 0f;
 
@@ -92,7 +92,10 @@ public class Player_Movement_Test : MonoBehaviour
 
         playerControler.Move(_velocity * Time.deltaTime);
 
-        playerMesh.LookAt(pointToLook);
+        transform.rotation = Quaternion.LookRotation(pointToLook - transform.position, transform.up);
+        if (transform.rotation.x  != 0 || transform.rotation.z != 0) {
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y ,0);
+        }
 
         productVector = Vector3.Cross(pointToLook - transform.position, _velocity - transform.position);
         //if is moving and the y axis of the result cross product between velocity and pointToLook is bigger than a threshold then strafe 
@@ -127,6 +130,7 @@ public class Player_Movement_Test : MonoBehaviour
             Player_Test.player._isMakingNoise = false;
         }
     }
+    
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
 
@@ -144,13 +148,21 @@ public class Player_Movement_Test : MonoBehaviour
 
         // Calculate push direction from move direction,
         // we only push objects to the sides never up and down
+        //print(hit.transform.name);
         Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
 
         // If you know how fast your character is trying to move,
         // then you can also multiply the push velocity by that.
 
         // Apply the push
-        body.velocity = pushDir * pushPower;
+        if (enemyMask == (enemyMask | 1 << hit.transform.gameObject.layer)) {
+            print("Enemy");
+            body.velocity = pushDir * pushPower * 5;
+        }
+        else {
+            body.velocity = pushDir * pushPower;
+            print("Normal");
+        }
     }
 
     //pass a vector to shrink (targetVector) to a magnitude

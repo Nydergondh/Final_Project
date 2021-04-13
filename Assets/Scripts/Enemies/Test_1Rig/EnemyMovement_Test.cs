@@ -291,12 +291,12 @@ public class EnemyMovement_Test : MonoBehaviour
         }
         else {
             if (currentWayPoint > previewsWayPoint && currentWayPoint < wayPoints.Count - 1) { // is going forward
-                print("1");
+                //print("1");
                 previewsWayPoint = currentWayPoint;
                 currentWayPoint++;
             }
             else if (currentWayPoint == wayPoints.Count - 1 && currentWayPoint > previewsWayPoint) { // is going forward and now gonna go back to 0
-                print("2");
+                //print("2");
                 if (reversePathAtEnd) {
                     previewsWayPoint = currentWayPoint;
                     currentWayPoint--;
@@ -309,12 +309,12 @@ public class EnemyMovement_Test : MonoBehaviour
                 //currentWayPoint--;
             }
             else if (currentWayPoint < previewsWayPoint && currentWayPoint != 0) { // is going backwords to 0
-                print("3");
+                //print("3");
                 previewsWayPoint = currentWayPoint;
                 currentWayPoint--;
             }
             else if (currentWayPoint < previewsWayPoint && currentWayPoint == 0) { // is comming backwards to 0 and its time to go forward again
-                print("4");
+                //print("4");
                 if (reversePathAtEnd) {
                     previewsWayPoint = currentWayPoint;
                     currentWayPoint++;

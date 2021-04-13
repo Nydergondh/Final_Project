@@ -13,10 +13,21 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     public bool invertControls = false;
     public float timeSlowScale = 0.5f;
 
+    #region TEST_VARIABLES
+    //TESTING ONLY
+    private MeshRenderer[] m_Renderes;
+    private SkinnedMeshRenderer[] s_Renderes;
+    public bool usingOldMaterial;
+
+    public Material oldMaterial;
+    public Material newMaterial;
+    //
+    #endregion
+
     public static Player_Test player;
 
-    private Player_Movement_Test playerMovement;
-    private Player_Combat_Test playerCombat;
+    public Player_Movement_Test playerMovement;
+    public Player_Combat_Test playerCombat;
 
     private MagicHandler magicHandler;
 
@@ -39,6 +50,9 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         else {
             player = this;
         }
+
+        m_Renderes = GetComponentsInChildren<MeshRenderer>();
+        s_Renderes = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     void Start() {
@@ -55,6 +69,26 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         foreach (Rigidbody rb in rigidBodys) {
             rb.isKinematic = true;
         }
+        #region TEST
+        //TEST
+        if (usingOldMaterial) {
+            foreach(MeshRenderer mR in m_Renderes) {
+                mR.material = oldMaterial;
+            }
+            foreach (SkinnedMeshRenderer mS in s_Renderes) {
+                mS.material = oldMaterial;
+            }
+        }
+        else {
+            foreach (MeshRenderer mR in m_Renderes) {
+                mR.material = newMaterial;
+            }
+            foreach (SkinnedMeshRenderer mS in s_Renderes) {
+                mS.material = newMaterial;
+            }
+        }
+        //END TEST
+        #endregion
 
         playerCombat = GetComponent<Player_Combat_Test>();
         playerMovement = GetComponent<Player_Movement_Test>();
