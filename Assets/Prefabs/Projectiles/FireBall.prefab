@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8979067348872914499}
   - component: {fileID: 8649598554917278474}
-  - component: {fileID: 5992106190047570607}
+  - component: {fileID: 7455902272920503700}
   - component: {fileID: -7246211585709050047}
   - component: {fileID: 2297020073184652940}
   - component: {fileID: -3338982230199046643}
@@ -137,8 +137,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!135 &5992106190047570607
-SphereCollider:
+--- !u!136 &7455902272920503700
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -147,8 +147,9 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.125
+  m_Radius: 0.5
+  m_Height: 1.1365303
+  m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-7246211585709050047
 Rigidbody:
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 3584
+    m_Bits: 50688
   fireBallSpeed: 10
   damage: 1
 --- !u!108 &-3338982230199046643
@@ -195,7 +196,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8490566, g: 0.5956092, b: 0.3244037, a: 1}
-  m_Intensity: 2
+  m_Intensity: 2.28
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

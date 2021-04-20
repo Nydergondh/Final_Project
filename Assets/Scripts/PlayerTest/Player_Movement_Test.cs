@@ -156,12 +156,10 @@ public class Player_Movement_Test : MonoBehaviour
 
         // Apply the push
         if (enemyMask == (enemyMask | 1 << hit.transform.gameObject.layer)) {
-            print("Enemy");
             body.velocity = pushDir * pushPower * 5;
         }
         else {
             body.velocity = pushDir * pushPower;
-            print("Normal");
         }
     }
 

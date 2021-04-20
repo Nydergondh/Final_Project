@@ -9,6 +9,7 @@ public class EnemyMovement_Test : MonoBehaviour
     [SerializeField]
     private float maxTimeToWait = 0.5f;
 
+    public float strafeFactor = 1f;
 
     public float patrolSpeed = 2.5f;
     public float allertSpeed = 5f;
@@ -36,6 +37,7 @@ public class EnemyMovement_Test : MonoBehaviour
 
         if (enemy.isRanged && enemy.GetNavAgent() != null) {
             enemy.GetNavAgent().updatePosition = false;
+            enemy.GetNavAgent().updateRotation = true;
         }
     }
     //TODO rework this method so taht the enemy rotates to look at the position he wants to go, then goes to the pos
@@ -237,7 +239,7 @@ public class EnemyMovement_Test : MonoBehaviour
 
             Vector3 productVector = Vector3.Cross(transform.forward, (enemy.targetTransform.position - transform.position).normalized);
             //if is moving and the y of the cross product between velocity and pointToLook is bigger than a threshold hten strafe 
-            if (Mathf.Abs(productVector.y) > 1.5) {
+            if (Mathf.Abs(productVector.y) > strafeFactor) {
                 //playerAnim.SetPlayerStrafe(true);
                 //TODO change latter to just have the above or this condicion
                 enemy.enemyAnim.SetStrafe(true);
@@ -274,13 +276,15 @@ public class EnemyMovement_Test : MonoBehaviour
     }
 
     private IEnumerator WaitToFollow() {
-        canMove = false;
-        enemy.enemyAnim.SetMoving(false);
+        if (!enemy.isRanged) {
+            canMove = false;
+            enemy.enemyAnim.SetMoving(false);
 
-        while (enemy.enemyCombat.isAttacking) {
-            yield return null;
+            while (enemy.enemyCombat.isAttacking) {
+                yield return null;
+            }
+            canMove = true;
         }
-        canMove = true;
     }
 
     private void SwitchWayPoint() {

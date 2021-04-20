@@ -100,7 +100,7 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         if (health > 0) {
             playerMovement.Move();
             playerMovement.MakingNoise();
-            playerCombat.Attack();
+            playerCombat.Combat();
         }
         else {
             if (alive) {

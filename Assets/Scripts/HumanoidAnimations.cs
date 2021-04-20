@@ -100,6 +100,15 @@ public class HumanoidAnimations : MonoBehaviour
         objAnim.enabled = value;
     }
 
+    public void SetAnimTotalSpeed(float value) {
+        objAnim.speed = value;
+    }
+
+    public void SetCurretnWeapon(int value) {
+        objAnim.SetInteger("CurrentWeapon", value);
+    }
+
+    //used on animation event Cast Attack
     public void UseMagic() {
         MagicHandler magicHandler = GetComponentInParent<MagicHandler>();
 

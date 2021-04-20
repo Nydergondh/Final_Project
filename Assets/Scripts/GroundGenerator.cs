@@ -10,7 +10,7 @@ public class GroundGenerator : MonoBehaviour
     public float tileScaleFactor = 0.1f;
 
     public GameObject tile;
-    public Renderer renderer;
+    public MeshRenderer _renderer;
     public Texture2D[] textures;
 
     // Start is called before the first frame update
@@ -21,18 +21,12 @@ public class GroundGenerator : MonoBehaviour
         for (int i = 0; i < xSize; i++) {
             for (int j = 0; j < ySize; j++) {
                 pos = transform.position;
-                print(pos);
                 pos = new Vector3(pos.x + (1f * i), pos.y, pos.z + (1f * j));
                 tileObj = Instantiate(tile, pos, Quaternion.identity ,transform);
-                renderer = tileObj.GetComponent<Renderer>();
-                renderer.material.SetTexture("_MainTexture", textures[Random.Range(0, textures.Length)]);
+                _renderer = tileObj.GetComponent<MeshRenderer>();
+                print(_renderer.name);
+                _renderer.material.SetTexture("_MainTexture", textures[Random.Range(0, textures.Length)]);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

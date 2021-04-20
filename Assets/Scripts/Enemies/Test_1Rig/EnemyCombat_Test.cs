@@ -7,6 +7,8 @@ public class EnemyCombat_Test : MonoBehaviour
     private Enemy_Test enemy;
 
     public bool isAttacking = false;
+    public float coolDownRangedAttack = 1f;
+    public bool coolDown = false;
 
     public float minDistToAttack = 0.5f;
     private int attackType = 1;
@@ -15,10 +17,22 @@ public class EnemyCombat_Test : MonoBehaviour
     void Start()
     {
         enemy = GetComponent<Enemy_Test>();
+        if (enemy.isRanged) {
+            minDistToAttack = enemy.fov.viewRadius;
+        }
+
     }
 
     public void UnsetAttack() {
         isAttacking = false;
+        StartCoroutine(AttackCoolDown());
+    }
+
+    IEnumerator AttackCoolDown() {
+        coolDown = true;
+        enemy.GetNavAgent().isStopped = false;
+        yield return new WaitForSeconds(coolDownRangedAttack);
+        coolDown = false;
     }
 
     public void AttackTarget() { //TODO maybe change name latter
@@ -34,19 +48,19 @@ public class EnemyCombat_Test : MonoBehaviour
                         isAttacking = true;
                     }
                 }
-                
             }
         }
 
         //ranged behavior
         else {
             if (enemy.fov.seeingPlayer) {
+                print(enemy.GetNavAgent().updatePosition);
                 if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) {
-                    if (!isAttacking) {
+                    if (!isAttacking && !coolDown) {
                         enemy.enemyAnim.SetAttack(true);
                         isAttacking = true;
 
-                        enemy.GetNavAgent().Warp(transform.position);
+                        //enemy.GetNavAgent().Warp(transform.position);
                     }
                 }
                 else {

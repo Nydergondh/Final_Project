@@ -7,8 +7,11 @@ public class Player_Combat_Test: MonoBehaviour
 
     private int attackType = 0;
     [SerializeField]
-    private GameObject[] weaponObj;
-    public Weapom currentWeapom; 
+    private Weapom[] weaponObj;
+
+    public Weapom_SO currentWeapom;
+
+    public bool usingMagic = true;
 
     private MagicHandler magicHandler;
     private PlayerAnimations playerAnim;
@@ -21,17 +24,32 @@ public class Player_Combat_Test: MonoBehaviour
         magicHandler = GetComponent<MagicHandler>();
 
         for (int i = 1; i < weaponObj.Length; i++) {
-            if (weaponObj[i] != null) {
-                weaponObj[i].SetActive(false);
+            if (weaponObj[i].gameObject != null) { 
+                weaponObj[i].gameObject.SetActive(false);
             }
         }
 
         playerAnim = GetComponent<PlayerAnimations>();
     }
 
-    public void Attack() {
+    //switch magic to melle or melle to magic
+    public void SwitchCombat() {
+        if (usingMagic) {
+            usingMagic = false;
+        }
+        else {
+            usingMagic = true;
+        }
+        SetAtkType(usingMagic);
+    }
+
+    public void Combat() {
         if (!isAttacking) {
-            SetAtkType();
+
+            if (Input.GetKeyDown(KeyCode.Space)) {
+                SwitchCombat();
+            }
+
             if (Input.GetMouseButtonDown(0)) {
                 playerAnim.SetAttack(true);
                 isAttacking = true;
@@ -41,7 +59,7 @@ public class Player_Combat_Test: MonoBehaviour
         MagicSwitching();
     }
 
-    private void MagicSwitching() {
+    private void MagicSwitching() { 
         if (Input.GetButtonDown("Next Magic")) {
             //if the current magic is the last magic in the list
             if (magicHandler.currentMagicId + 1 == magicHandler.allMagics.Count) {
@@ -63,54 +81,51 @@ public class Player_Combat_Test: MonoBehaviour
         }
     }
 
-    private void SetAtkType() {
-        //unarmed
+    public void SetCurrentWeapom(Weapom_SO newWeapom) {
+        currentWeapom = newWeapom;
+        usingMagic = false;
+        SetAtkType(false);
+    }
 
-        //rapier
-
-        //1h sword
-
-        //2h sword
-
-        //Halbert
-
-        //shiled
-
-        if (attackType <= 8 && attackType >= 0) {
-            //playerAnim.SetCurretnWeapon(attackType);
-            //TODO change latter to just have the above or this condicion
-            playerAnim.SetCurretnWeapon(attackType);
-
-            SetWeapomId();
-            if (attackType >= 0 && attackType <= 8) {
-                SetWeaponMesh();
-            }
+    private void SetAtkType(bool useMagic) {
+        SetWeaponMesh(useMagic);
+        if (!useMagic) {
+            playerAnim.SetCurretnWeapon(currentWeapom.id);
         }
-
+        else {
+            playerAnim.SetCurretnWeapon(0);
+        }
     }
 
     public void UnsetAttack() {
         isAttacking = false;
     }
 
-    private int SetWeapomId() {
-        if (currentWeapom != null) {
-            attackType = currentWeapom.id;
+    private void SetWeaponMesh(bool useMagic) {
+        //in case is of not using magic, switch to weapom
+        if (!useMagic) {
+            foreach (Weapom weapom in weaponObj) {
+                if (weapom.weapomTemplate.id == currentWeapom.id) {
+                    print(weapom.name);
+                    weapom.gameObject.SetActive(true);
+                }
+                else {
+                    print("Not Using "+ weapom.name);
+                    weapom.gameObject.SetActive(false);
+                }
+            }
         }
-        else{
-            attackType = 0;
+        //in case is using magic, switch to no weapom
+        else {
+            foreach (Weapom weapom in weaponObj) {
+                weapom.gameObject.SetActive(false);
+            }
         }
-        return attackType;
     }
 
-    private void SetWeaponMesh() {
-        foreach (GameObject weapom in weaponObj) {
-            if (weapom == currentWeapom.weaponObj) {
-                weapom.SetActive(true);
-            }
-            else {
-                weapom.SetActive(true);
-            }
+    public void DropWeapom() {
+        if (currentWeapom) {
+            Instantiate(currentWeapom.weaponObj, transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0 ,0));
         }
     }
 

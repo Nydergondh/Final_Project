@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MagicHandler : MonoBehaviour
 {
+    public bool usingMagic = false;
+
     public List<Magic> allMagics; // all magics currently in the game
     public GameObject[] magicPrefabs;  // objects you want to instanciate when magic is casted
 
@@ -60,19 +62,19 @@ public class MagicHandler : MonoBehaviour
             i++;
         }
 
-        magic = new Magic(); //TODO maybe refactor this later to use currentMagic to avoid garbage collector overload
-        magic.SetMagic(i, "Invisibility");
-        AddToAllMagics(magic);
-        i++;
+        //magic = new Magic(); //TODO maybe refactor this later to use currentMagic to avoid garbage collector overload
+        //magic.SetMagic(i, "Invisibility");
+        //AddToAllMagics(magic);
+        //i++;
 
-        magic = new Magic(); //TODO maybe refactor this later to use currentMagic to avoid garbage collector overload
-        magic.SetMagic(i, "Wall Crossing");
-        AddToAllMagics(magic);
-        i++;
+        //magic = new Magic(); //TODO maybe refactor this later to use currentMagic to avoid garbage collector overload
+        //magic.SetMagic(i, "Wall Crossing");
+        //AddToAllMagics(magic);
+        //i++;
 
-        magic = new Magic(); 
-        magic.SetMagic(i, "Time Stop");
-        AddToAllMagics(magic);
+        //magic = new Magic(); 
+        //magic.SetMagic(i, "Time Stop");
+        //AddToAllMagics(magic);
 
     }
 

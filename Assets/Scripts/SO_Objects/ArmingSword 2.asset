@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f22ca84925f978a4e97630c442e69146, type: 3}
   m_Name: ArmingSword 2
   m_EditorClassIdentifier: 
-  weaponObj: {fileID: 0}
-  id: 0
+  weaponObj: {fileID: 331344014738422124, guid: d63705299f923a14ea93d4edad182d05,
+    type: 3}
+  id: 2
+  weapomName: Arming Sword

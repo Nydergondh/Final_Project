@@ -28,6 +28,7 @@ public class FireBall : MonoBehaviour, IDamage
 
     private void OnTriggerEnter(Collider other) {
         if (collidableLayer == (collidableLayer | 1 << other.gameObject.layer)) {
+            print(other.name);
             if (other.GetComponent<IDamageable>() != null) {
                 other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage());
                 Destroy(gameObject);

@@ -38,6 +38,10 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         rigidBodys = GetComponentsInChildren<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         navAgent = GetComponent<NavMeshAgent>();
+
+        enemyCombat = GetComponent<EnemyCombat_Test>();
+        enemyMovement = GetComponent<EnemyMovement_Test>();
+        fov = GetComponent<FieldOfView_Test>();
     }
 
     void Start() {
@@ -50,12 +54,16 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         }
 
         characterController.enabled = true;
-        enemyCombat = GetComponent<EnemyCombat_Test>();
-        enemyMovement = GetComponent<EnemyMovement_Test>();
-        fov = GetComponent<FieldOfView_Test>();
-
-        navAgent.stoppingDistance = enemyCombat.minDistToAttack;
+        if (!isRanged) {
+            navAgent.stoppingDistance = enemyCombat.minDistToAttack;
+        }
         navAgent.speed = enemyMovement.patrolSpeed;
+
+        enemyAnim.SetAnimTotalSpeed(1.5f);
+        if (isRanged) {
+            enemyAnim.SetCurretnWeapon(0);
+        }
+         
     }
 
     void Update() {
@@ -66,6 +74,7 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         }
         else {
             if (alive) {
+                StageManager.INSTANCE.enemyCount--;
                 EnableRagdoll();
                 //gameObject.SetActive(false);
             }
