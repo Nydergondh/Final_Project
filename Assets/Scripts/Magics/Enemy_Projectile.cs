@@ -37,8 +37,8 @@ public class Enemy_Projectile : MonoBehaviour, IDamage
                     Destroy(gameObject);
                 }
                 else {
-                    StopCoroutine(Player.player.GetComponent<PlayerCombat>().InvertControls());
-                    StartCoroutine(Player.player.GetComponent<PlayerCombat>().InvertControls());
+                    StopCoroutine(Player_Test.player.playerCombat.InvertControls());
+                    StartCoroutine(Player_Test.player.playerCombat.InvertControls());
                     meshRenderer.enabled = false;
                     col.enabled = false;
                     Destroy(gameObject,5f);

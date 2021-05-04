@@ -149,7 +149,7 @@ MonoBehaviour:
     m_Bits: 4096
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 34304
+    m_Bits: 52736
   projSpeed: 5
   projRotateSpeed: 500
   isActive: 1

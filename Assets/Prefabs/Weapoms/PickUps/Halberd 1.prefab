@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 332081943163890980}
   - component: {fileID: 1912980155496565157}
   - component: {fileID: 3784045250395436732}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Halberd 1 Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
 {
     public bool isRanged = false;
+    public bool isBlind = false;
 
     [SerializeField]
     protected int health = 1;
@@ -108,6 +109,5 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
 
         navAgent.enabled = false;
         alive = false;
-
     }
 }

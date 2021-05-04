@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 2033273345448070352}
   - component: {fileID: 3138962833167107618}
   - component: {fileID: 2500539256076544816}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GS Pommel 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 4461290615748288549}
   - component: {fileID: 6568166270248207217}
   - component: {fileID: 1985658203790790359}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GS Grip 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 6580407224694154677}
   - component: {fileID: 6680349775345376913}
   - component: {fileID: 5669416949763851650}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GS Blade 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 977525731252411283}
   - component: {fileID: 494418692114799427}
   - component: {fileID: 7491378535505757885}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: GS Quillons 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3265742321887559131}
   - component: {fileID: 1326624882536337978}
   - component: {fileID: 6180958400085460806}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: 1h Pommel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8738944122122073561}
   - component: {fileID: 2733105422346444741}
   - component: {fileID: 96382607678419202}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: 1h Blade 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 3146685488273485790}
   - component: {fileID: 6995943686131237962}
   - component: {fileID: 1070185485768719341}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: 1h Quillons 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 6532336951425624993}
   - component: {fileID: 7806289277019125849}
   - component: {fileID: 1501713713675920485}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: 1h Grip 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

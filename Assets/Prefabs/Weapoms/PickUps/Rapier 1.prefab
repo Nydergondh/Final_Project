@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1569362498158858370}
   - component: {fileID: 782571637105947217}
   - component: {fileID: 6909649894354152581}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Rapier 1 Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

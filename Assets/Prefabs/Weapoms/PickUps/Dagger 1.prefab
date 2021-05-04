@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5036092853142444569}
   - component: {fileID: 1064267675355804024}
   - component: {fileID: 8914632570216370837}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: DG Grip 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 7008259232301843002}
   - component: {fileID: 430402002581229271}
   - component: {fileID: 2608539421223368278}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: DG Quillons 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 7144641794621844523}
   - component: {fileID: 5551566021842288075}
   - component: {fileID: 5965996960026450052}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: DG Blade 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 7159219484565498068}
   - component: {fileID: 3750289323916928376}
   - component: {fileID: 1646583454585660376}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: DG Pommel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

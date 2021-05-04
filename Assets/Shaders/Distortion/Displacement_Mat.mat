@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Displacement_Mat
+  m_Shader: {fileID: -6465566751694194690, guid: ccb238c24c0d21e45944f066479cd4e8,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_40FB4267:
+        m_Texture: {fileID: 2800000, guid: 17878164e3b10aa46aebb1e109779124, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_457D936A:
+        m_Texture: {fileID: 2800000, guid: af2ee445a1f89fe4b87c8f02c863dafd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_1D16D88F: -2.08
+    - Vector1_23D6FD05: 10
+    - Vector1_47AA58FB: 1.35
+    m_Colors:
+    - Color_DFE7FE01: {r: 0.49056602, g: 0.122641504, b: 0.12506205, a: 0.39607844}
+    - Vector2_6E7C324B: {r: 10, g: 10, b: 0, a: 0}
+    - Vector2_96779922: {r: 0.1, g: 0, b: 0, a: 0}
+    - Vector2_B5727C39: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - Vector2_E52557B1: {r: 1, g: 1, b: 1, a: 1}

@@ -181,7 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collidableLayer:
     serializedVersion: 2
-    m_Bits: 50688
+    m_Bits: 52736
   fireBallSpeed: 10
   damage: 1
 --- !u!108 &-3338982230199046643

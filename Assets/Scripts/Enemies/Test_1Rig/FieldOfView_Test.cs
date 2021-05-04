@@ -38,11 +38,16 @@ public class FieldOfView_Test : MonoBehaviour
         if (targetInViewRadius.Length > 0) {
             for (int i = 0; i < targetInViewRadius.Length; i++) {
                 Transform target = targetInViewRadius[i].transform;
-                if (target.GetComponent<IDamageable>() != null) { //if the target can be damaged (Done so that we can't target another object)
+                if (target.GetComponent<IDamageable>() != null && target != transform) { //if the target can be damaged (Done so that we can't target another object)
                     float dstToTarget = Vector3.Distance(transform.position, target.position);
                     Vector3 dirToTarget = (target.position - transform.position).normalized;
                     //check if the player inside the sphere of influence is within the angle of vision of the AI
-                    IsHearingPlayer(target);
+                    if (CanHearPlayer()) {
+                        IsHearingPlayer(target);
+                    }
+                    else {
+                        hearingPlayer = false;
+                    }
                     if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2) {
                         //casts a ray to the players position to see if he is behind a wall
                         if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)) {
@@ -56,6 +61,10 @@ public class FieldOfView_Test : MonoBehaviour
                         }
                     }
                 }
+                //can't ear the player because there is no player around the radius
+                else {
+                    hearingPlayer = false;
+                }
             }
         }
         //if the IA fail one of the tests it will be set to not see the player (so it will not follow him)
@@ -66,6 +75,14 @@ public class FieldOfView_Test : MonoBehaviour
 
     }
 
+    public bool CanHearPlayer() {
+        float dstToTarget = Vector3.Distance(transform.position, Player_Test.player.transform.position);
+        if(dstToTarget <= hearingRange) {
+            return true;
+        }
+        return false;
+    }
+
     public bool IsHearingPlayer(Transform playerTransform) {
         float dstToTarget = Vector3.Distance(transform.position, playerTransform.position);
         //check if the player inside the sphere of influence is within the angle of vision of the AI
@@ -73,12 +90,15 @@ public class FieldOfView_Test : MonoBehaviour
             hearingPlayer = true;
         }
         else {
-            if (dstToTarget <= hearingRange && Player_Test.player._isMakingNoise) {
+            if (dstToTarget <= hearingRange && (Player_Test.player._isMakingNoise || enemy.isBlind)) {
+                print(dstToTarget);
                 hearingPlayer = true;
                 currentTarget = playerTransform;
             }
             else {
+                print("Not Hearing");
                 hearingPlayer = false;
+                currentTarget = null;
             }
         }
         return hearingPlayer;

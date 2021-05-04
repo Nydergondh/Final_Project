@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6598563905135303871}
   - component: {fileID: 3438377757129298663}
   - component: {fileID: 4573045074901108732}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LS Blade 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 9146202760790162951}
   - component: {fileID: 7700411170995680133}
   - component: {fileID: 1689868268158144539}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LS Grip 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 5928600907921108675}
   - component: {fileID: 121632208991101467}
   - component: {fileID: 6711888471399224104}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LS Quillons 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 8622318630520980841}
   - component: {fileID: 9093891846906337299}
   - component: {fileID: 3651728641591746005}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: LS Pommel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

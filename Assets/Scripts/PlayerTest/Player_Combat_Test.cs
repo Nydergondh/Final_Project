@@ -18,6 +18,8 @@ public class Player_Combat_Test: MonoBehaviour
 
     public bool isAttacking = false;
 
+    private float currentWaitTime = 0f;
+    private float timeinvertedControls = 2f;
     //private KeyCode pressedWeapon;
     // Start is called before the first frame update
     void Start() {
@@ -62,6 +64,7 @@ public class Player_Combat_Test: MonoBehaviour
     private void MagicSwitching() { 
         if (Input.GetButtonDown("Next Magic")) {
             //if the current magic is the last magic in the list
+            
             if (magicHandler.currentMagicId + 1 == magicHandler.allMagics.Count) {
                 magicHandler.UpdateCurrentMagic(0);
             }
@@ -79,6 +82,7 @@ public class Player_Combat_Test: MonoBehaviour
                 magicHandler.UpdateCurrentMagic(magicHandler.currentMagicId - 1);
             }
         }
+        MagicUI.INSTANCE.SwitchMagicIcon(magicHandler.currentMagicId);
     }
 
     public void SetCurrentWeapom(Weapom_SO newWeapom) {
@@ -89,6 +93,7 @@ public class Player_Combat_Test: MonoBehaviour
 
     private void SetAtkType(bool useMagic) {
         SetWeaponMesh(useMagic);
+        WeapomUI.INSTANCE.SwitchWeapom(currentWeapom);
         if (!useMagic) {
             playerAnim.SetCurretnWeapon(currentWeapom.id);
         }
@@ -121,6 +126,21 @@ public class Player_Combat_Test: MonoBehaviour
                 weapom.gameObject.SetActive(false);
             }
         }
+    }
+
+
+    public IEnumerator InvertControls() {
+        //float currentWaitTime = 0;
+        currentWaitTime = 0;
+        Player_Test.player.invertControls = true;
+
+        while (currentWaitTime < timeinvertedControls) {
+            currentWaitTime += Time.deltaTime;
+            print("Time: " + currentWaitTime);
+            yield return null;
+        }
+        print("Ended");
+        Player_Test.player.invertControls = false;
     }
 
     public void DropWeapom() {

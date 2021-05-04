@@ -36,8 +36,9 @@ public class EnemyMovement_Test : MonoBehaviour
         //enemy.enemyAnim.SetMoving(false);
 
         if (enemy.isRanged && enemy.GetNavAgent() != null) {
-            enemy.GetNavAgent().updatePosition = false;
-            enemy.GetNavAgent().updateRotation = true;
+            enemy.GetNavAgent().enabled = false;
+            //enemy.GetNavAgent().updatePosition = false;
+            //enemy.GetNavAgent().updateRotation = true;
         }
     }
     //TODO rework this method so taht the enemy rotates to look at the position he wants to go, then goes to the pos
@@ -134,13 +135,6 @@ public class EnemyMovement_Test : MonoBehaviour
 
     public void FollowTarget() {
 
-        if (enemy.targetTransform == Player_Test.player.transform) {
-            enemy.GetNavAgent().speed = allertSpeed;
-        }
-        else {
-            enemy.GetNavAgent().speed = patrolSpeed;
-        }
-
         if (!canMove) {
             //if not ranged stay still
             if (!enemy.isRanged) {
@@ -149,22 +143,28 @@ public class EnemyMovement_Test : MonoBehaviour
             }
             //if ranged rotate and shoot player, but stand on the same position
             else {
-                if (enemy.fov.seeingPlayer) {
-                    enemy.GetNavAgent().isStopped = false;
+                if (enemy.fov.seeingPlayer || enemy.fov.hearingPlayer) {
+                    //enemy.GetNavAgent().isStopped = false;
                     if (enemy.targetTransform == enemy.fov.currentTarget) {
-                        enemy.GetNavAgent().destination = enemy.targetTransform.position;
+                        HandleRotation();
+                        //enemy.GetNavAgent().destination = enemy.targetTransform.position;
                     }
                     else {
                         ChangeTarget();
                     }
                 }
-                else {
-                    enemy.GetNavAgent().isStopped = true;
-                }
             }
         }
 
         else {
+
+            if (enemy.targetTransform == Player_Test.player.transform) {
+                enemy.GetNavAgent().speed = allertSpeed;
+            }
+            else {
+                enemy.GetNavAgent().speed = patrolSpeed;
+            }
+
 
             if (enemy.targetTransform == Player_Test.player.transform) {
                 if (enemy.enemyCombat.isAttacking) {
@@ -263,11 +263,15 @@ public class EnemyMovement_Test : MonoBehaviour
     }
 
     private void ChangeTarget() {
-        enemy.GetNavAgent().Warp(transform.position);
+        if (!enemy.isRanged) {
+            enemy.GetNavAgent().Warp(transform.position);
+        }
 
         if (enemy.fov.seeingPlayer || enemy.fov.hearingPlayer) { // check if is seeing or hearing player
             enemy.targetTransform = enemy.fov.currentTarget; // set player has target 
-            enemy.GetNavAgent().destination = enemy.targetTransform.position;
+            if (!enemy.isRanged) {
+                enemy.GetNavAgent().destination = enemy.targetTransform.position;
+            }
         }                                                      //TODO transform targetTransform in to a Vector3
         else {
             SwitchWayPoint();
@@ -288,50 +292,51 @@ public class EnemyMovement_Test : MonoBehaviour
     }
 
     private void SwitchWayPoint() {
-
-        if (enemy.targetTransform.gameObject.layer == 8) { //Called when the player was being followed and now need to go back to the old Way Point
-            enemy.targetTransform = wayPoints[currentWayPoint];
-            enemy.GetNavAgent().destination = enemy.targetTransform.position;
-        }
-        else {
-            if (currentWayPoint > previewsWayPoint && currentWayPoint < wayPoints.Count - 1) { // is going forward
-                //print("1");
-                previewsWayPoint = currentWayPoint;
-                currentWayPoint++;
+        if (!enemy.isRanged) {
+            if (enemy.targetTransform.gameObject.layer == 8) { //Called when the player was being followed and now need to go back to the old Way Point
+                enemy.targetTransform = wayPoints[currentWayPoint];
+                enemy.GetNavAgent().destination = enemy.targetTransform.position;
             }
-            else if (currentWayPoint == wayPoints.Count - 1 && currentWayPoint > previewsWayPoint) { // is going forward and now gonna go back to 0
-                //print("2");
-                if (reversePathAtEnd) {
-                    previewsWayPoint = currentWayPoint;
-                    currentWayPoint--;
-                }
-                else {
-                    previewsWayPoint = -1;
-                    currentWayPoint = 0;
-                }
-                //previewsWayPoint = currentWayPoint;
-                //currentWayPoint--;
-            }
-            else if (currentWayPoint < previewsWayPoint && currentWayPoint != 0) { // is going backwords to 0
-                //print("3");
-                previewsWayPoint = currentWayPoint;
-                currentWayPoint--;
-            }
-            else if (currentWayPoint < previewsWayPoint && currentWayPoint == 0) { // is comming backwards to 0 and its time to go forward again
-                //print("4");
-                if (reversePathAtEnd) {
+            else {
+                if (currentWayPoint > previewsWayPoint && currentWayPoint < wayPoints.Count - 1) { // is going forward
+                    //print("1");
                     previewsWayPoint = currentWayPoint;
                     currentWayPoint++;
                 }
-                else {
-                    previewsWayPoint = currentWayPoint;
-                    currentWayPoint = 0;
+                else if (currentWayPoint == wayPoints.Count - 1 && currentWayPoint > previewsWayPoint) { // is going forward and now gonna go back to 0
+                    //print("2");
+                    if (reversePathAtEnd) {
+                        previewsWayPoint = currentWayPoint;
+                        currentWayPoint--;
+                    }
+                    else {
+                        previewsWayPoint = -1;
+                        currentWayPoint = 0;
+                    }
+                    //previewsWayPoint = currentWayPoint;
+                    //currentWayPoint--;
                 }
-                //previewsWayPoint = currentWayPoint;
-                //currentWayPoint++;
+                else if (currentWayPoint < previewsWayPoint && currentWayPoint != 0) { // is going backwords to 0
+                    //print("3");
+                    previewsWayPoint = currentWayPoint;
+                    currentWayPoint--;
+                }
+                else if (currentWayPoint < previewsWayPoint && currentWayPoint == 0) { // is comming backwards to 0 and its time to go forward again
+                    //print("4");
+                    if (reversePathAtEnd) {
+                        previewsWayPoint = currentWayPoint;
+                        currentWayPoint++;
+                    }
+                    else {
+                        previewsWayPoint = currentWayPoint;
+                        currentWayPoint = 0;
+                    }
+                    //previewsWayPoint = currentWayPoint;
+                    //currentWayPoint++;
+                }
+                enemy.targetTransform = wayPoints[currentWayPoint];
+                enemy.GetNavAgent().destination = enemy.targetTransform.position;
             }
-            enemy.targetTransform = wayPoints[currentWayPoint];
-            enemy.GetNavAgent().destination = enemy.targetTransform.position;
         }
     }
 }

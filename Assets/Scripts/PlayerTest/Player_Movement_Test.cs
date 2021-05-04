@@ -27,8 +27,9 @@ public class Player_Movement_Test : MonoBehaviour
     public bool _isGrounded = false;
 
     public bool _isMoving = false;
-    public float timeToMakeNoise = 1f;
-    private float currentNoiseTime = 0;
+
+    private float currentTimeToStopNoise = 0f;
+    public float timeToStopNoise = 0.5f;
 
     // Start is called before the first frame update
     void Start() {
@@ -117,17 +118,22 @@ public class Player_Movement_Test : MonoBehaviour
     }
 
     public void MakingNoise() {
-        if (_isMoving && currentNoiseTime < timeToMakeNoise) {
-            currentNoiseTime += Time.deltaTime;
+        if (!_isMoving) {
+            if (currentTimeToStopNoise < timeToStopNoise) {
+                currentTimeToStopNoise += Time.deltaTime;
+                makingNoise = true;
+                Player_Test.player._isMakingNoise = true;
+            }
+            else {
+                currentTimeToStopNoise = timeToStopNoise;
+                makingNoise = false;
+                Player_Test.player._isMakingNoise = false;
+            }
         }
-        else if (_isMoving && currentNoiseTime > timeToMakeNoise) {
-            currentNoiseTime = timeToMakeNoise;
+        else {
+            currentTimeToStopNoise = 0;
+            makingNoise = true;
             Player_Test.player._isMakingNoise = true;
-        }
-        //TODO: Add time to stop making noise here
-        else if (!_isMoving) {
-            currentNoiseTime = 0;
-            Player_Test.player._isMakingNoise = false;
         }
     }
     

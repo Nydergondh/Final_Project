@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1039521645207647260}
   - component: {fileID: 2483110535630175981}
   - component: {fileID: 2447385466056318457}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Halberd 2 Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}

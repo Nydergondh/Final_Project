@@ -19,6 +19,7 @@ public class EnemyCombat_Test : MonoBehaviour
         enemy = GetComponent<Enemy_Test>();
         if (enemy.isRanged) {
             minDistToAttack = enemy.fov.viewRadius;
+            enemy.GetNavAgent().enabled = false;
         }
 
     }
@@ -30,7 +31,9 @@ public class EnemyCombat_Test : MonoBehaviour
 
     IEnumerator AttackCoolDown() {
         coolDown = true;
-        enemy.GetNavAgent().isStopped = false;
+        if (!enemy.isRanged) {
+            enemy.GetNavAgent().isStopped = false;
+        }
         yield return new WaitForSeconds(coolDownRangedAttack);
         coolDown = false;
     }
@@ -54,7 +57,7 @@ public class EnemyCombat_Test : MonoBehaviour
         //ranged behavior
         else {
             if (enemy.fov.seeingPlayer) {
-                print(enemy.GetNavAgent().updatePosition);
+                //print(enemy.GetNavAgent().updatePosition);
                 if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) {
                     if (!isAttacking && !coolDown) {
                         enemy.enemyAnim.SetAttack(true);
@@ -64,11 +67,11 @@ public class EnemyCombat_Test : MonoBehaviour
                     }
                 }
                 else {
-                    enemy.GetNavAgent().isStopped = false;
+                    //enemy.GetNavAgent().isStopped = false;
                 }
             }
             else {
-                enemy.GetNavAgent().isStopped = false;
+                //enemy.GetNavAgent().isStopped = false;
             }
         }
     }
