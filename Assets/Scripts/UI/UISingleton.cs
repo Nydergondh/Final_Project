@@ -28,8 +28,23 @@ public class UISingleton : MonoBehaviour
 
     public void ShowStageCleared() {
         anim.SetBool("StageCleared", true);
-        messageHighlighter.UpdateText("STAGE CLEARED");
-        messageHighlighter.ShowPickUpText();
+        //messageHighlighter.UpdateText("STAGE CLEARED");
+        //messageHighlighter.ShowPickUpText();
+    }
+
+    public void FadeIn() {
+        anim.SetBool("FadeIn", true);
+        anim.SetBool("FadeOut", false);
+    }
+
+    public void FadeOut() {
+        anim.SetBool("FadeIn", false);
+        anim.SetBool("FadeOut", true);
+    }
+
+    public void LoadNewMap() {
+        anim.SetBool("FadeIn", false);
+        anim.SetBool("FadeOut", false);
     }
 
 }

@@ -15,8 +15,8 @@ public class PickUpItem : MonoBehaviour
         }
 
         //open chest and equip player new weapom
-        UISingleton.INSTANCE.messageHighlighter.UpdateText("Picked up " + weapom.weapomName);
-        StartCoroutine(UISingleton.INSTANCE.messageHighlighter.ShowPickUpText());
+        //UISingleton.INSTANCE.messageHighlighter.UpdateText("Picked up " + weapom.weapomName);
+        //StartCoroutine(UISingleton.INSTANCE.messageHighlighter.ShowPickUpText());
         Destroy(gameObject);
     }
 }

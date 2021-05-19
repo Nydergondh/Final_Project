@@ -38,11 +38,14 @@ public class Player_Movement_Test : MonoBehaviour
     }
 
     public void Move() {
-        float xSpeed, zSpeed;
+        float xSpeed, zSpeed, angle;
         Vector3 movement;
 
         Vector3 pointToLook;
-        Vector3 productVector;
+
+        Vector2 lookVector;
+        Vector2 velocityVector;
+        Vector2 currentVector2Pos = new Vector2(transform.position.x, transform.position.z);
 
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit groundPoint;
@@ -55,15 +58,16 @@ public class Player_Movement_Test : MonoBehaviour
             pointToLook = transform.position;
         }
 
+        lookVector = new Vector2(pointToLook.x , pointToLook.z);
+
         if (!Player_Test.player.invertControls) {
-            xSpeed = Input.GetAxis("Horizontal");
-            zSpeed = Input.GetAxis("Vertical");
+            xSpeed = Input.GetAxisRaw("Horizontal");
+            zSpeed = Input.GetAxisRaw("Vertical");
         }
         else {
-            xSpeed = Input.GetAxis("Horizontal") * -1;
-            zSpeed = Input.GetAxis("Vertical") * -1;
+            xSpeed = Input.GetAxisRaw("Horizontal") * -1;
+            zSpeed = Input.GetAxisRaw("Vertical") * -1;
         }
-
 
         //Grounded Logic (to Do gravity)
         _isGrounded = Physics.CheckSphere(transform.position, GroundDistance, groundMask, QueryTriggerInteraction.Ignore);
@@ -88,6 +92,7 @@ public class Player_Movement_Test : MonoBehaviour
             _velocity = Vector3.zero;
             playerAnim.SetMoving(false);
         }
+        velocityVector = new Vector2(transform.position.x + _velocity.x, transform.position.z + _velocity.z);
         //add gravity
         _velocity.y += Physics.gravity.y;
 
@@ -97,10 +102,10 @@ public class Player_Movement_Test : MonoBehaviour
         if (transform.rotation.x  != 0 || transform.rotation.z != 0) {
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y ,0);
         }
-
-        productVector = Vector3.Cross(pointToLook - transform.position, _velocity - transform.position);
         //if is moving and the y axis of the result cross product between velocity and pointToLook is bigger than a threshold then strafe 
-        if (Mathf.Abs(_velocity.magnitude) > 0.1f && Mathf.Abs(productVector.y) > strafeTreshhold) {
+        angle = Vector2.Angle(velocityVector - currentVector2Pos, lookVector - currentVector2Pos);
+        print(angle);
+        if (Mathf.Abs(_velocity.magnitude) > 0.1f && (angle >= 30 && angle <= 150)) {
             //playerAnim.SetPlayerStrafe(true);
             //TODO change latter to just have the above or this condicion
             playerAnim.SetStrafe(true);
@@ -112,6 +117,7 @@ public class Player_Movement_Test : MonoBehaviour
         }
 
         Debug.DrawLine(playerMesh.position, pointToLook, Color.red); // player to mouse
+        Debug.DrawLine(playerMesh.position, velocityVector, Color.blue);
         //Debug.DrawLine(transform.position, pointToLook, Color.red); // player to mouse
         //Debug.DrawLine(velocityVector, transform.position, Color.yellow); //player speed
         //Debug.DrawLine(velocityVector, pointToLook, Color.blue); // (mouse - player speed) vector
@@ -174,6 +180,12 @@ public class Player_Movement_Test : MonoBehaviour
         float magnitudeDiference = Mathf.Abs(targetVect.magnitude - magnitudeTarget);
         targetVect /= magnitudeDiference;
         return targetVect;
+    }
+
+    private float AngleBetweenVector2(Vector2 vec1, Vector2 vec2) {
+        Vector2 vec1Rotated90 = new Vector2(-vec1.y, vec1.x);
+        float sign = (Vector2.Dot(vec1Rotated90, vec2) < 0) ? -1.0f : 1.0f;
+        return Vector2.Angle(vec1, vec2) * sign;
     }
 
 }

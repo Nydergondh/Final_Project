@@ -1,0 +1,316 @@
+fileFormatVersion: 2
+guid: 454953b4c83c04c48a362239de0f97c6
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable:
+  - first:
+      74: 377463640544463781
+    second: Sk Whole|0_TPose
+  - first:
+      74: -844885253258191534
+    second: Sk Whole|1h_Attack
+  - first:
+      74: 542417002229784512
+    second: Sk Whole|1h_Attack_Shield
+  - first:
+      74: 4717350651296228503
+    second: Sk Whole|1h_Idle
+  - first:
+      74: 3200118779122118603
+    second: Sk Whole|1h_Idle_Shield
+  - first:
+      74: -8962605177124200181
+    second: Sk Whole|1h_Rapier_Attack
+  - first:
+      74: 3959876039512059523
+    second: Sk Whole|1h_Rapier_Idle
+  - first:
+      74: -3297347314313880477
+    second: Sk Whole|2.0 GS_Attack
+  - first:
+      74: -2868456504551292869
+    second: Sk Whole|2.0 GS_FrontPose
+  - first:
+      74: -2631048039601261229
+    second: Sk Whole|2.0 GS_Idle
+  - first:
+      74: -2020359208200263388
+    second: Sk Whole|2.0 Hal_Attack
+  - first:
+      74: 8930373511109196804
+    second: Sk Whole|2.0 Hal_Idle
+  - first:
+      74: -3426370810319322823
+    second: Sk Whole|2.0 LS_FrontPose
+  - first:
+      74: -4205747985237764910
+    second: Sk Whole|2.0_1h_Attack
+  - first:
+      74: -3583565105218866551
+    second: Sk Whole|2.0_1h_Attack Shield
+  - first:
+      74: 193596116326550935
+    second: Sk Whole|2.0_1h_FrontPose
+  - first:
+      74: 8954486752661824073
+    second: Sk Whole|2.0_1h_FrontPose Shield
+  - first:
+      74: 4265928373623952690
+    second: Sk Whole|2.0_1h_Idle
+  - first:
+      74: 4734443156434794263
+    second: Sk Whole|2.0_1h_Idle Shield
+  - first:
+      74: -7042888645513463698
+    second: Sk Whole|2.0_1h_Throw
+  - first:
+      74: 3105864287450223139
+    second: Sk Whole|2.0_2h_Throw
+  - first:
+      74: 8562047768398700707
+    second: Sk Whole|2.0_Cast Attack
+  - first:
+      74: -2630872457899459950
+    second: Sk Whole|2.0_Cast Attack Shield
+  - first:
+      74: -3635251659447314113
+    second: Sk Whole|2.0_Cast Charge
+  - first:
+      74: 1023079902503243632
+    second: Sk Whole|2.0_Cast Charge Shield
+  - first:
+      74: -1183591853013609745
+    second: Sk Whole|2.0_Dagger_Attack
+  - first:
+      74: 1107314326792856813
+    second: Sk Whole|2.0_Dagger_Attack Shield
+  - first:
+      74: 6785536986236186933
+    second: Sk Whole|2.0_Dagger_Idle
+  - first:
+      74: -2321057371092985420
+    second: Sk Whole|2.0_Dagger_Idle Shield
+  - first:
+      74: 5425435738126024524
+    second: Sk Whole|2.0_Idle
+  - first:
+      74: 6499007251434467841
+    second: Sk Whole|2.0_Kick
+  - first:
+      74: -1515459748692665487
+    second: Sk Whole|2.0_LS_Attack
+  - first:
+      74: -8428119544130123707
+    second: Sk Whole|2.0_LS_Idle
+  - first:
+      74: -7625282237473980065
+    second: Sk Whole|2.0_Rapier_Attack
+  - first:
+      74: 7081187090549757268
+    second: Sk Whole|2.0_Rapier_Attack Shield
+  - first:
+      74: -8236328544483498488
+    second: Sk Whole|2.0_Rapier_Idle
+  - first:
+      74: 1064431389211717179
+    second: Sk Whole|2.0_Rapier_Idle Shield
+  - first:
+      74: 1327216730287305463
+    second: Sk Whole|2.0_Shield Throw
+  - first:
+      74: -5631382296280817007
+    second: Sk Whole|2.0_Staff_Charge
+  - first:
+      74: -738751239049932875
+    second: Sk Whole|2.0_Staff_Charge_Loop
+  - first:
+      74: 5082692337175151299
+    second: Sk Whole|2.0_Staff_Charge_Loop_Shield
+  - first:
+      74: -8532056205559077859
+    second: Sk Whole|2.0_Staff_Charge_Shield
+  - first:
+      74: -5692993287922718973
+    second: Sk Whole|2.0_Staff_Idle
+  - first:
+      74: -4401996952173697639
+    second: Sk Whole|2.0_Staff_Idle_Shield
+  - first:
+      74: 3150198932070553137
+    second: Sk Whole|2.0_Staff_Shoot
+  - first:
+      74: 91679240121065173
+    second: Sk Whole|2.0_Staff_Shoot_Shield
+  - first:
+      74: -539442329950239146
+    second: Sk Whole|2.0_Strafe
+  - first:
+      74: -890163584407557830
+    second: Sk Whole|2.0_TPose
+  - first:
+      74: 8851293043746967769
+    second: Sk Whole|2.0_Walk
+  - first:
+      74: 2916512692835448108
+    second: Sk Whole|2h_Attack
+  - first:
+      74: -7638453404562291819
+    second: Sk Whole|2h_Idle
+  - first:
+      74: 3685792825599222658
+    second: Sk Whole|2h_Throw
+  - first:
+      74: -8615933086806440800
+    second: Sk Whole|Body Skeleton|Body Skeleton|2h_Attack|Body Skeleton|2h_Attack
+  - first:
+      74: -5180324395356226389
+    second: Sk Whole|Body Skeleton|Body Skeleton|2h_Idle|Body Skeleton|2h_Idle
+  - first:
+      74: -6778981492682778704
+    second: Sk Whole|Body Skeleton|Body Skeleton|2h_Throw|Body Skeleton|2h_Throw
+  - first:
+      74: -3920003653319754445
+    second: Sk Whole|Body Skeleton|Body Skeleton|Idle|Body Skeleton|Idle
+  - first:
+      74: 136076283065430221
+    second: Sk Whole|Body Skeleton|Body Skeleton|Strafe|Body Skeleton|Strafe
+  - first:
+      74: -3423363996455360583
+    second: Sk Whole|Body Skeleton|Body Skeleton|Test|Body Skeleton|Test
+  - first:
+      74: -1857566866570994619
+    second: Sk Whole|Body Skeleton|Body Skeleton|TPose|Body Skeleton|TPose
+  - first:
+      74: -284934654546944924
+    second: Sk Whole|Body Skeleton|Body Skeleton|Walk|Body Skeleton|Walk
+  - first:
+      74: 7593176916180961327
+    second: Sk Whole|Cast_Attack
+  - first:
+      74: -1438379115142265246
+    second: Sk Whole|Cast_Attack_Shield
+  - first:
+      74: -126905652422858346
+    second: Sk Whole|Cast_Charge
+  - first:
+      74: 4783039742076275976
+    second: Sk Whole|EmptyAction
+  - first:
+      74: 2799738601171103232
+    second: Sk Whole|GS_Attack
+  - first:
+      74: 6617380926444817589
+    second: Sk Whole|GS_Idle
+  - first:
+      74: -5175393212560099131
+    second: Sk Whole|Idle
+  - first:
+      74: -6599609073105661780
+    second: Sk Whole|Staff_Attack
+  - first:
+      74: -4507992184092238586
+    second: Sk Whole|Staff_Idle
+  - first:
+      74: 6831144753847587559
+    second: Sk Whole|Strafe
+  - first:
+      74: 2118034428673904183
+    second: Sk Whole|Unarmed_Attack
+  - first:
+      74: -7286382630508229691
+    second: Sk Whole|Unarmed_Combat_Idle
+  - first:
+      74: -225832584929728978
+    second: Sk Whole|Walk
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 10
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 10
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

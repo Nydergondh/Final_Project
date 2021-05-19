@@ -91,7 +91,6 @@ public class FieldOfView_Test : MonoBehaviour
         }
         else {
             if (dstToTarget <= hearingRange && (Player_Test.player._isMakingNoise || enemy.isBlind)) {
-                print(dstToTarget);
                 hearingPlayer = true;
                 currentTarget = playerTransform;
             }

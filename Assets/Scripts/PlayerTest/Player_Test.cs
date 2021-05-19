@@ -13,6 +13,8 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     public bool invertControls = false;
     public float timeSlowScale = 0.5f;
 
+    public bool canMove = true;
+
     #region TEST_VARIABLES
     //TESTING ONLY
     private MeshRenderer[] m_Renderes;
@@ -98,9 +100,11 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
     void Update() {
         if (health > 0) {
-            playerMovement.Move();
-            playerMovement.MakingNoise();
-            playerCombat.Combat();
+            if (canMove){
+                playerMovement.Move();
+                playerMovement.MakingNoise();
+                playerCombat.Combat();
+            }
         }
         else {
             if (alive) {
@@ -116,7 +120,9 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     }
 
     public void OnDamage(int damage) {
-        health -= damage;
+        if (canMove) {
+            health -= damage;
+        }
     }
 
     private void EnableRagdoll() {
@@ -137,4 +143,10 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
     }
     
+    public void WarpPlayerToPos(Stairs stairs)  {
+        playerController.enabled = false;
+        transform.position = stairs.nextSpawn.spawnPosition.position;
+        playerController.enabled = true;
+    }
+
 }

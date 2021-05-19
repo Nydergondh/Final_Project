@@ -9,19 +9,26 @@ public class HumanoidAnimations : MonoBehaviour
     protected bool isPlayer;
     protected Player_Test player;
     protected Enemy_Test enemy;
+    protected EnemyBoss bossEnemy = null;
 
     protected Player_Combat_Test playerCombat;
     protected EnemyCombat_Test enemyCombat;
 
     private Collider[] col;
 
-    void Start() {
-
+    private void Awake() {
         objAnim = GetComponent<Animator>();
+    }
+
+    void Start() {
 
         if (GetComponent<Enemy_Test>() != null) {
             enemy = GetComponent<Enemy_Test>();
             enemyCombat = GetComponent<EnemyCombat_Test>();
+            isPlayer = false;
+        }
+        else if (GetComponent<EnemyBoss>() != null) {
+            bossEnemy = GetComponent<EnemyBoss>();
             isPlayer = false;
         }
         else {
@@ -86,6 +93,9 @@ public class HumanoidAnimations : MonoBehaviour
         yield return new WaitForSeconds(0.25f); //TODO change to a variable later
         if (isPlayer) {
             playerCombat.UnsetAttack();
+        }
+        else if (bossEnemy) {
+            bossEnemy.UnsetAttack();
         }
         else {
             enemyCombat.UnsetAttack();

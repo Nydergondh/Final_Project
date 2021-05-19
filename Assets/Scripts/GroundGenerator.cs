@@ -24,7 +24,6 @@ public class GroundGenerator : MonoBehaviour
                 pos = new Vector3(pos.x + (1f * i), pos.y, pos.z + (1f * j));
                 tileObj = Instantiate(tile, pos, Quaternion.identity ,transform);
                 _renderer = tileObj.GetComponent<MeshRenderer>();
-                print(_renderer.name);
                 _renderer.material.SetTexture("_MainTexture", textures[Random.Range(0, textures.Length)]);
             }
         }

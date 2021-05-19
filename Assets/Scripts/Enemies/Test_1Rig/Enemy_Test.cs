@@ -21,6 +21,8 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
     [HideInInspector]
     public EnemyCombat_Test enemyCombat;
 
+    public Weapom_SO currentWeapom;
+
     private NavMeshAgent navAgent;
 
     private CharacterController characterController;
@@ -45,8 +47,7 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         fov = GetComponent<FieldOfView_Test>();
     }
 
-    void Start() {
-
+    private void Start() {
         foreach (Collider col in colliders) {
             col.enabled = false;
         }
@@ -55,19 +56,19 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         }
 
         characterController.enabled = true;
+
         if (!isRanged) {
             navAgent.stoppingDistance = enemyCombat.minDistToAttack;
         }
-        navAgent.speed = enemyMovement.patrolSpeed;
-
-        enemyAnim.SetAnimTotalSpeed(1.5f);
-        if (isRanged) {
+        else {
             enemyAnim.SetCurretnWeapon(0);
         }
-         
+
+        navAgent.speed = enemyMovement.patrolSpeed;
+        enemyAnim.SetAnimTotalSpeed(1.5f);
     }
 
-    void Update() {
+    private void Update() {
         if (health > 0 && alive) {
             fov.FindVisibleTarget();
             enemyCombat.AttackTarget();
@@ -77,7 +78,7 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
             if (alive) {
                 StageManager.INSTANCE.enemyCount--;
                 EnableRagdoll();
-                //gameObject.SetActive(false);
+                DropWeapom();
             }
         }
     }
@@ -94,11 +95,8 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         health -= damage;
     }
 
-
-    private void EnableRagdoll() {
-        //GetComponent<Rigidbody>().useGravity = false;
+    private void EnableRagdoll() { 
         enemyAnim.SetAlive(false);
-        characterController.enabled = false;
 
         foreach (Collider col in colliders) {
             col.enabled = true;
@@ -108,6 +106,13 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         }
 
         navAgent.enabled = false;
+        characterController.enabled = false;
         alive = false;
+    }
+
+    public void DropWeapom() {
+        if (currentWeapom) {
+            Instantiate(currentWeapom.weaponObj, transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
+        }
     }
 }

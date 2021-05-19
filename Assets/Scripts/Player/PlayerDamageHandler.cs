@@ -21,13 +21,13 @@ public class PlayerDamageHandler : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other) {
-        //check if the layer triggered matches with the target layer
-        if (targetLayer == (targetLayer | 1 << other.gameObject.layer)) {
-            if (other.GetComponent<IDamageable>() != null) {
-                //get your damage (Enemy/Player) on the parent and apply it on the target
-                other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage());
-            }
-        }
-    }
+    //private void OnTriggerStay(Collider other) {
+    //    //check if the layer triggered matches with the target layer
+    //    if (targetLayer == (targetLayer | 1 << other.gameObject.layer)) {
+    //        if (other.GetComponent<IDamageable>() != null) {
+    //            //get your damage (Enemy/Player) on the parent and apply it on the target
+    //            other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage());
+    //        }
+    //    }
+    //}
 }

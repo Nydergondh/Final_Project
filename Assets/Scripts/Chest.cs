@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-
     public Weapom_SO constWeapom;
     public Weapom_SO[] weapomArray;
     public bool used;
@@ -34,8 +33,8 @@ public class Chest : MonoBehaviour
             }
 
             //open chest and equip player new weapom
-            UISingleton.INSTANCE.messageHighlighter.UpdateText("Picked up " + chestWeapomName);
-            StartCoroutine(UISingleton.INSTANCE.messageHighlighter.ShowPickUpText());
+            //UISingleton.INSTANCE.messageHighlighter.UpdateText("Picked up " + chestWeapomName);
+            //StartCoroutine(UISingleton.INSTANCE.messageHighlighter.ShowPickUpText());
             used = true;
             anim.SetBool("Open", true);
         }
