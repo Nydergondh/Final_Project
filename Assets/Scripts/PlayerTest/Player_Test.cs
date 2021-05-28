@@ -73,22 +73,22 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         }
         #region TEST
         //TEST
-        if (usingOldMaterial) {
-            foreach(MeshRenderer mR in m_Renderes) {
-                mR.material = oldMaterial;
-            }
-            foreach (SkinnedMeshRenderer mS in s_Renderes) {
-                mS.material = oldMaterial;
-            }
-        }
-        else {
-            foreach (MeshRenderer mR in m_Renderes) {
-                mR.material = newMaterial;
-            }
-            foreach (SkinnedMeshRenderer mS in s_Renderes) {
-                mS.material = newMaterial;
-            }
-        }
+        //if (usingOldMaterial) {
+        //    foreach(MeshRenderer mR in m_Renderes) {
+        //        mR.material = oldMaterial;
+        //    }
+        //    foreach (SkinnedMeshRenderer mS in s_Renderes) {
+        //        mS.material = oldMaterial;
+        //    }
+        //}
+        //else {
+        //    foreach (MeshRenderer mR in m_Renderes) {
+        //        mR.material = newMaterial;
+        //    }
+        //    foreach (SkinnedMeshRenderer mS in s_Renderes) {
+        //        mS.material = newMaterial;
+        //    }
+        //}
         //END TEST
         #endregion
 
