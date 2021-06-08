@@ -96,6 +96,10 @@ public class Enemy : MonoBehaviour, IDamage, IDamageable
         health -= damage;
     }
 
+    public void OnDamage(int damage, Vector3 bloodDirection) {
+        health -= damage;
+    }
+
 
     private void EnableRagdoll() {
         GetComponent<Rigidbody>().useGravity = false;

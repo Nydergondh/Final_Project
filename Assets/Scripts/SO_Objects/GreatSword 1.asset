@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 3}
   id: 5
   weapomName: Great Sword
+  weapomSprite: {fileID: 21300000, guid: e67d463aa8d91614d897c5f9915202c9, type: 3}

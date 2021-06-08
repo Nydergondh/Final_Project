@@ -116,6 +116,11 @@ public class Player : MonoBehaviour, IDamage, IDamageable
         print(gameObject.name + " Got hit!");
     }
 
+    public void OnDamage(int damage, Vector3 bloodDirection) {
+        health -= damage;
+        print(gameObject.name + " Got hit!");
+    }
+
     private void EnableRagdoll() {
 
         playerController.enabled = false;

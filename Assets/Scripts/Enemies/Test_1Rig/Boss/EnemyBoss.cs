@@ -34,6 +34,8 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
 
     public HumanoidAnimations enemyAnim { get; set; }
 
+    private ParticleSystem bloodParticles;
+
     public Transform targetTransform;
 
     private Collider[] colliders;
@@ -55,6 +57,7 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     void Awake() {
         skMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         enemyAnim = GetComponent<HumanoidAnimations>();
+        bloodParticles = GetComponentInChildren<ParticleSystem>();
 
         colliders = GetComponentsInChildren<Collider>();
         rigidBodys = GetComponentsInChildren<Rigidbody>();
@@ -121,6 +124,21 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
 
     public void OnDamage(int damage) {
         health -= damage;
+        if (health > 0) {
+            StartCoroutine(ProtectBoss());
+            if (health == 3) {
+                HighAgreesion();
+            }
+            else if (health == 1) {
+                UltraAgreesion();
+            }
+        }
+    }
+
+    public void OnDamage(int damage, Vector3 bloodDirection) {
+        health -= damage;
+        bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
+        bloodParticles.Play();
         if (health > 0) {
             StartCoroutine(ProtectBoss());
             if (health == 3) {

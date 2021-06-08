@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 3}
   id: 2
   weapomName: Arming Sword
+  weapomSprite: {fileID: 21300000, guid: 157ba74cf2adde24f97ce7d6867921b3, type: 3}

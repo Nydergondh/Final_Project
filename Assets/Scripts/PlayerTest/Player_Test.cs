@@ -33,6 +33,8 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
     private MagicHandler magicHandler;
 
+    private AudioSource audioSource;
+
     private CharacterController playerController;
 
     [HideInInspector]
@@ -43,6 +45,8 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     private Collider[] col;
     private Rigidbody[] rigidBodys;
 
+    private ParticleSystem bloodParticles;
+
     public bool _isMakingNoise = false;
 
     void Awake() {
@@ -52,13 +56,13 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         else {
             player = this;
         }
-
+        bloodParticles = GetComponentInChildren<ParticleSystem>();
         m_Renderes = GetComponentsInChildren<MeshRenderer>();
         s_Renderes = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
 
     void Start() {
-
+        audioSource = GetComponent<AudioSource>();
         playerController = GetComponent<CharacterController>();
         playerAnimator = GetComponent<PlayerAnimations>();
 
@@ -120,6 +124,16 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     }
 
     public void OnDamage(int damage) {
+        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
+        if (canMove) {
+            health -= damage;
+        }
+    }
+
+    public void OnDamage(int damage, Vector3 bloodDirection) {
+        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
+        bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
+        bloodParticles.Play();
         if (canMove) {
             health -= damage;
         }
@@ -147,6 +161,11 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         playerController.enabled = false;
         transform.position = stairs.nextSpawn.spawnPosition.position;
         playerController.enabled = true;
+    }
+
+    public void PlayAttackSound() {
+        print("Played Attack Sound!");
+        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_1));
     }
 
 }

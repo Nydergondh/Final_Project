@@ -104,23 +104,22 @@ public class Player_Movement_Test : MonoBehaviour
         }
         //if is moving and the y axis of the result cross product between velocity and pointToLook is bigger than a threshold then strafe 
         angle = Vector2.Angle(velocityVector - currentVector2Pos, lookVector - currentVector2Pos);
-        print(angle);
         if (Mathf.Abs(_velocity.magnitude) > 0.1f && (angle >= 30 && angle <= 150)) {
-            //playerAnim.SetPlayerStrafe(true);
             //TODO change latter to just have the above or this condicion
             playerAnim.SetStrafe(true);
         }
         else {
-            //playerAnim.SetPlayerStrafe(false);
             //TODO change latter to just have the above or this condicion
             playerAnim.SetStrafe(false);
         }
 
+        #region debugs_DrawLine
         Debug.DrawLine(playerMesh.position, pointToLook, Color.red); // player to mouse
         Debug.DrawLine(playerMesh.position, velocityVector, Color.blue);
         //Debug.DrawLine(transform.position, pointToLook, Color.red); // player to mouse
         //Debug.DrawLine(velocityVector, transform.position, Color.yellow); //player speed
         //Debug.DrawLine(velocityVector, pointToLook, Color.blue); // (mouse - player speed) vector
+        #endregion
     }
 
     public void MakingNoise() {

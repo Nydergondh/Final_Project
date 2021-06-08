@@ -33,14 +33,13 @@ public class ControlableMissile : MonoBehaviour, IDamage
         if (isActive) {
             //add restriction for when holding mouse botton
             HandleRotation();
-            
         }
     }
 
     private void OnTriggerEnter(Collider other) {
         if (collidableLayer == (collidableLayer | 1 << other.gameObject.layer)) {
             if (other.GetComponent<IDamageable>() != null) {
-                other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage());
+                other.GetComponent<IDamageable>().OnDamage(GetComponentInParent<IDamage>().GetDamage(), col.transform.root.position - other.transform.root.position);
                 Destroy(gameObject);
             }
             else {

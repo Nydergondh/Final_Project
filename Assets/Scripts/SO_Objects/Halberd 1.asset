@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 3}
   id: 7
   weapomName: Halberd
+  weapomSprite: {fileID: 21300000, guid: 2d80cf3bf2e4c604c81f4d88055ba062, type: 3}

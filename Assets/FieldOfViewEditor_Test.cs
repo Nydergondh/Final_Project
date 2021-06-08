@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(FieldOfView_Test))]
@@ -24,3 +25,4 @@ public class FieldOfViewEditor_Test : Editor {
 
     }
 }
+#endif

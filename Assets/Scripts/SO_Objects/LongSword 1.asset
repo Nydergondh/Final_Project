@@ -16,3 +16,4 @@ MonoBehaviour:
     type: 3}
   id: 3
   weapomName: Long Sword
+  weapomSprite: {fileID: 21300000, guid: 6dc508457e376054ebd3625df5f8f2b3, type: 3}

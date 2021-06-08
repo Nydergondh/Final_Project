@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(FieldOfView))]
@@ -21,6 +22,6 @@ public class FieldOfViewEditor : Editor {
         if (fow.currentTarget != null) {
             Handles.DrawLine(fow.transform.position, fow.currentTarget.position);
         }
-
     }
 }
+#endif

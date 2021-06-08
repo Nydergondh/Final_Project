@@ -13,18 +13,24 @@ public class GroundGenerator : MonoBehaviour
     public MeshRenderer _renderer;
     public Texture2D[] textures;
 
+    public Texture2D[] normals;
+
     // Start is called before the first frame update
     void Awake()
     {
         Vector3 pos;
         GameObject tileObj;
+        int randomTile;
         for (int i = 0; i < xSize; i++) {
             for (int j = 0; j < ySize; j++) {
                 pos = transform.position;
                 pos = new Vector3(pos.x + (1f * i), pos.y, pos.z + (1f * j));
                 tileObj = Instantiate(tile, pos, Quaternion.identity ,transform);
                 _renderer = tileObj.GetComponent<MeshRenderer>();
-                _renderer.material.SetTexture("_BaseMap", textures[Random.Range(0, textures.Length)]);
+                randomTile = Random.Range(0, textures.Length);
+                _renderer.material.SetTexture("_BaseMap", textures[randomTile]);
+                _renderer.material.EnableKeyword("_NORMALMAP");
+                _renderer.material.SetTexture("_BumpMap", normals[randomTile]);
             }
         }
     }

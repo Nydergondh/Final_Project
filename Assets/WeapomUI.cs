@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class WeapomUI : MonoBehaviour
 {
     private GameObject weapomObj;
+    private Image imageCurrentWeapom = null;
     public static WeapomUI INSTANCE;
 
     private void Awake() {
@@ -16,15 +18,15 @@ public class WeapomUI : MonoBehaviour
         }
     }
 
-    public void SwitchWeapom(Weapom_SO newWeapom) {
+    private void Start() {
+        imageCurrentWeapom = GetComponent<Image>();
+    }
 
-        if (newWeapom.id > 0) {
-            Destroy(weapomObj);
-            weapomObj = Instantiate(newWeapom.weaponObj, transform.position, transform.rotation, transform);
-            return;
+    public void SwitchWeapom(Weapom_SO newWeapom) {
+        if (!imageCurrentWeapom.enabled) {
+            imageCurrentWeapom.enabled = true;
         }
-        
-        Destroy(weapomObj);
+        imageCurrentWeapom.sprite = newWeapom.weapomSprite;
     }
 
 }

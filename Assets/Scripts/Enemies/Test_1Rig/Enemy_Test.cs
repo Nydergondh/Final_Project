@@ -33,6 +33,9 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
 
     private Collider[] colliders;
     private Rigidbody[] rigidBodys;
+    private ParticleSystem bloodParticles;
+
+    private AudioSource audioSource;
 
     void Awake() {
         enemyAnim = GetComponent<HumanoidAnimations>();
@@ -42,8 +45,10 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         characterController = GetComponent<CharacterController>();
         navAgent = GetComponent<NavMeshAgent>();
 
+        bloodParticles = GetComponentInChildren<ParticleSystem>();
         enemyCombat = GetComponent<EnemyCombat_Test>();
         enemyMovement = GetComponent<EnemyMovement_Test>();
+        audioSource = GetComponent<AudioSource>();
         fov = GetComponent<FieldOfView_Test>();
     }
 
@@ -93,6 +98,16 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
 
     public void OnDamage(int damage) {
         health -= damage;
+        bloodParticles.Play();
+        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
+    }
+
+    public void OnDamage(int damage,  Vector3 bloodDirection) {
+        health -= damage;
+        bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
+        print(bloodParticles.transform.eulerAngles);
+        bloodParticles.Play();
+        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
     }
 
     private void EnableRagdoll() { 
@@ -115,4 +130,9 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
             Instantiate(currentWeapom.weaponObj, transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
         }
     }
+
+    public void PlayAttackSound() {
+        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_1));
+    }
+    
 }
