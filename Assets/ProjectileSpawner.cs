@@ -94,7 +94,7 @@ public class ProjectileSpawner : MonoBehaviour
                     //}
                     //wait for colldown and reset the whole process
                     collDownTimer = Random.Range(minCoolDown * collDownModifier, maxCoolDown * collDownModifier);
-                    print("EndShoot");
+                    print(collDownTimer);
                     yield return new WaitForSeconds(collDownTimer);
                 //}
                 //yield return null;

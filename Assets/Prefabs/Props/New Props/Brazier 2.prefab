@@ -111,6 +111,11 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 7123520908139789375, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7842419722253761144, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_RootOrder
