@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
 
-    [HideInInspector] public SkinnedMeshRenderer skMeshRenderer;
+    [HideInInspector] public SkinnedMeshRenderer[] skMeshRenderers;
 
     [SerializeField]
     protected int health = 1;
@@ -55,7 +55,7 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     public float rotateSpeed = 50f;
 
     void Awake() {
-        skMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        skMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
         enemyAnim = GetComponent<HumanoidAnimations>();
         bloodParticles = GetComponentInChildren<ParticleSystem>();
 
@@ -190,8 +190,15 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     public void StartBoss() {
         startFight = true;
         targetTransform = Player_Test.player.transform;
-        skMeshRenderer.enabled = true;
+
+        foreach (SkinnedMeshRenderer skRenderer in skMeshRenderers) {
+            skRenderer.enabled = true;
+        }
         characterController.enabled = true;
+
+        StageManager.INSTANCE.musicPlayer.Stop();
+        StageManager.INSTANCE.musicPlayer.clip = SoundManager.GetSound(SoundAudios.Sound.BossMusic);
+        StageManager.INSTANCE.musicPlayer.Play();
     }
 
     public IEnumerator ProtectBoss() {

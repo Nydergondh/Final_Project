@@ -26,6 +26,8 @@ public class SoundAudios : MonoBehaviour
         WeapomSwing_1 = 1,
         WeapomSwing_2 = 2,
         WeapomSwing_3 = 3,
-        BloodSplash = 4
+        BloodSplash = 4,
+        MainMusic = 5,
+        BossMusic = 6
     }
 }

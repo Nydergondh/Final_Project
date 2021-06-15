@@ -10,6 +10,8 @@ public class StageManager : MonoBehaviour
     public static StageManager INSTANCE;
     public bool stageCleared = false;
 
+    [HideInInspector]
+    public AudioSource musicPlayer;
 
     // Start is called before the first frame update
     void Awake()
@@ -26,6 +28,8 @@ public class StageManager : MonoBehaviour
                 enemyCount++;
             }
         }
+
+        musicPlayer = GetComponent<AudioSource>();
     }
 
     public void StageCleared() {

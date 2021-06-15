@@ -90,7 +90,8 @@ public class FieldOfView_Test : MonoBehaviour
             hearingPlayer = true;
         }
         else {
-            if (dstToTarget <= hearingRange && (Player_Test.player._isMakingNoise || enemy.isBlind)) {
+            if (dstToTarget <= hearingRange && (Player_Test.player._isMakingNoise || enemy.isBlind)
+                && !Physics.Raycast(transform.position, playerTransform.position - transform.position, dstToTarget, obstacleMask)) {
                 hearingPlayer = true;
                 currentTarget = playerTransform;
             }

@@ -113,8 +113,6 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         else {
             if (alive) {
                 EnableRagdoll();
-                //alive = false;
-                //gameObject.SetActive(false);
             }
         }
     }
@@ -142,7 +140,6 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     private void EnableRagdoll() {
 
         playerController.enabled = false;
-
         playerAnimator.SetAlive(false);
 
         foreach (Collider collider in col) {

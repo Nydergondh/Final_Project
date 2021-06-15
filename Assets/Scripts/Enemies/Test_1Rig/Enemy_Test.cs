@@ -33,7 +33,10 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
 
     private Collider[] colliders;
     private Rigidbody[] rigidBodys;
+
+    private Rigidbody hipRigidBody;
     private ParticleSystem bloodParticles;
+    private ParticleSystem.EmissionModule emissionModule;
 
     private AudioSource audioSource;
 
@@ -46,6 +49,9 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         navAgent = GetComponent<NavMeshAgent>();
 
         bloodParticles = GetComponentInChildren<ParticleSystem>();
+        hipRigidBody = bloodParticles.GetComponentInParent<Rigidbody>();
+        emissionModule = bloodParticles.emission;
+
         enemyCombat = GetComponent<EnemyCombat_Test>();
         enemyMovement = GetComponent<EnemyMovement_Test>();
         audioSource = GetComponent<AudioSource>();
@@ -85,6 +91,9 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
                 EnableRagdoll();
                 DropWeapom();
             }
+            else {
+                CheckPostMortemMovement();
+            }
         }
     }
 
@@ -105,7 +114,6 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
     public void OnDamage(int damage,  Vector3 bloodDirection) {
         health -= damage;
         bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
-        print(bloodParticles.transform.eulerAngles);
         bloodParticles.Play();
         audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
     }
@@ -128,6 +136,24 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
     public void DropWeapom() {
         if (currentWeapom) {
             Instantiate(currentWeapom.weaponObj, transform.position + new Vector3(0, 0.1f, 0), Quaternion.Euler(-90, 0, 0));
+        }
+    }
+
+    private void CheckPostMortemMovement() {
+        print(hipRigidBody.name);
+        //is moving (emit blood)
+        if (!hipRigidBody.IsSleeping()) {
+            if (!bloodParticles.isEmitting) {
+                emissionModule.burstCount = 0;
+                emissionModule.rateOverTime = 5f;
+                bloodParticles.Play();
+            }
+        }
+        //is not moving (stop blood)
+        else {
+            if (bloodParticles.isEmitting) {
+                bloodParticles.Stop();
+            }
         }
     }
 
