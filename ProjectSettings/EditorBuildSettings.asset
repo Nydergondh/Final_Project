@@ -5,10 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 25277f72b1be0ee4dbf43fea00f0f607
+  - enabled: 1
+    path: Assets/Scenes/Vitor_scene_02.unity
+    guid: 481b6a4c2b58ee8418354a13d22e54e5
   - enabled: 1
     path: Assets/Scenes/Vitor_scene_01.unity
     guid: dbd74db1aedc1c04285911855ab26f99
+  - enabled: 1
+    path: Assets/Scenes/Endingscene.unity
+    guid: b395e957839290b458ef983dfd2a136e
   m_configObjects: {}

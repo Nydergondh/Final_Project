@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!4 &2295236577080704540
 Transform:
@@ -107,10 +107,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 440307744848039554, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_Range
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_Intensity
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: rangeMax
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: rangeMim
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: flikerMax
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: flikerMim
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123520908139789375, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
@@ -207,10 +247,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fire
       objectReference: {fileID: 0}
+    - target: {fileID: 440307744848039554, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_Range
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_Intensity
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: rangeMax
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: rangeMim
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: flikerMax
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: flikerMim
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7123520908139789375, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
@@ -250,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 7842419722253761144, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.622
+      value: 1.651
       objectReference: {fileID: 0}
     - target: {fileID: 7842419722253761144, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}

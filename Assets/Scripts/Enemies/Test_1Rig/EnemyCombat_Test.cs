@@ -21,7 +21,6 @@ public class EnemyCombat_Test : MonoBehaviour
             minDistToAttack = enemy.fov.viewRadius;
             enemy.GetNavAgent().enabled = false;
         }
-
     }
 
     public void UnsetAttack() {
@@ -32,7 +31,9 @@ public class EnemyCombat_Test : MonoBehaviour
     IEnumerator AttackCoolDown() {
         coolDown = true;
         if (!enemy.isRanged) {
-            enemy.GetNavAgent().isStopped = false;
+            if (enemy.GetNavAgent().enabled) {
+                enemy.GetNavAgent().isStopped = false;
+            }
         }
         yield return new WaitForSeconds(coolDownRangedAttack);
         coolDown = false;
@@ -45,6 +46,9 @@ public class EnemyCombat_Test : MonoBehaviour
         // we see and hear
             if (enemy.fov.seeingPlayer && enemy.fov.hearingPlayer) {
                 //in attack distance
+
+                enemy.GetNavAgent().stoppingDistance = minDistToAttack;
+                
                 if (Vector3.Distance(transform.position, enemy.targetTransform.position) <= minDistToAttack) { 
                     if (!isAttacking) {
                         enemy.enemyAnim.SetAttack(true);

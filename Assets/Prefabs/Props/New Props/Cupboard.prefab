@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2916508048099114147}
   - component: {fileID: 2294125562275099398}
   - component: {fileID: 4049484019125716940}
+  - component: {fileID: 570186445}
   m_Layer: 10
   m_Name: Cupboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2916508048099114147
 Transform:
@@ -79,3 +80,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &570186445
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2536182116391298585}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.4682875, y: 0.48864585, z: 2.3071408}
+  m_Center: {x: 0, y: -0.005073734, z: 1.1535704}

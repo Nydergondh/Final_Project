@@ -4965,23 +4965,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
+      propertyPath: m_Range
+      value: 3.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
       propertyPath: m_Intensity
-      value: 0.75
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_Lightmapping
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_ShadowRadius
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}
       propertyPath: m_Shadows.m_Type
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1593210048727683642, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: rangeMax
+      value: 3.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: rangeMim
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: flikerMax
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056165213190623836, guid: 9daff8c365c73b1468ffc6f77443a126,
+        type: 3}
+      propertyPath: flikerMim
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7123520908139789375, guid: 9daff8c365c73b1468ffc6f77443a126,
         type: 3}

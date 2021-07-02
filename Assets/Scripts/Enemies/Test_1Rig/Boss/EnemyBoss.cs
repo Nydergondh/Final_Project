@@ -23,9 +23,13 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
 
     public float minDistToAttack = 5f;
 
-    public bool activateProtection = false;
+    [Space]
+    public bool isProtected = false;
     public float protectionDealy = 0.5f;
     public float protectionDuration = 2f;
+    [SerializeField]
+    private ParticleSystem[] fireProtection;
+    [Space]
 
     public List<ProjectileSpawner> spawners;
     //public Queue<ProjectileSpawner> currentShootingSpawns;
@@ -125,27 +129,29 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     public void OnDamage(int damage) {
         health -= damage;
         if (health > 0) {
-            StartCoroutine(ProtectBoss());
             if (health == 3) {
                 HighAgreesion();
             }
             else if (health == 1) {
                 UltraAgreesion();
             }
+            StartCoroutine(ProtectBoss());
         }
     }
 
     public void OnDamage(int damage, Vector3 bloodDirection) {
-        health -= damage;
-        bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
-        bloodParticles.Play();
-        if (health > 0) {
-            StartCoroutine(ProtectBoss());
-            if (health == 3) {
-                HighAgreesion();
-            }
-            else if (health == 1) {
-                UltraAgreesion();
+        if (!isProtected) {
+            health -= damage;
+            bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
+            bloodParticles.Play();
+            if (health > 0) {
+                if (health == 3) {
+                    HighAgreesion();
+                }
+                else if (health == 1) {
+                    UltraAgreesion();
+                }
+                StartCoroutine(ProtectBoss());
             }
         }
     }
@@ -165,9 +171,11 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     }
 
     private void HighAgreesion() {
+        fireProtection[1].gameObject.SetActive(true);
+        protectionDealy += 1.5f;
+
         foreach (ProjectileSpawner projSpawner in spawners) {
             if (!projSpawner.bossProtection) {
-
                 projSpawner.projSpeedModifier = 1.1f;
                 projSpawner.maxNumOfProjModifier += 1;
                 projSpawner.collDownModifier = 0.75f;
@@ -177,6 +185,9 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     }
 
     private void UltraAgreesion() {
+        fireProtection[2].gameObject.SetActive(true);
+        protectionDealy += 2f;
+
         foreach (ProjectileSpawner projSpawner in spawners) {
             if (!projSpawner.bossProtection) {
                 projSpawner.projSpeedModifier = 1.25f;
@@ -202,10 +213,47 @@ public class EnemyBoss : MonoBehaviour, IDamage, IDamageable {
     }
 
     public IEnumerator ProtectBoss() {
+
+        foreach (ParticleSystem fireParticles in fireProtection) {
+            if (fireParticles.gameObject.activeSelf) {
+                fireParticles.Play();
+            }
+        }
+
+        //ParticleSystem.MainModule mainModule = fireProtection.main;
+        //fireProtection.Play();
+        isProtected = true;
+
         yield return new WaitForSeconds(protectionDealy);
-        activateProtection = true;
+
+        foreach (ParticleSystem fireParticles in fireProtection) {
+            if (fireParticles.gameObject.activeSelf) {
+                ParticleSystem.MainModule mainModule = fireParticles.main;
+                fireParticles.GetComponent<InstantKillWall>().isWallActive = true;
+                mainModule.startLifetime = 1f;
+            }
+        }
+
+        //fireProtection.GetComponent<InstantKillWall>().isWallActive = true;
+        //mainModule.startLifetime = 1f;
+
         yield return new WaitForSeconds(protectionDuration);
-        activateProtection = false;
+
+        foreach (ParticleSystem fireParticles in fireProtection) {
+            if (fireParticles.gameObject.activeSelf) {
+                ParticleSystem.MainModule mainModule = fireParticles.main;
+                fireParticles.GetComponent<InstantKillWall>().isWallActive = false;
+                mainModule.startLifetime = 0.3f;
+                fireParticles.Stop();
+            }
+        }
+
+        //fireProtection.GetComponent<InstantKillWall>().isWallActive = false;
+        //mainModule.startLifetime = 0.3f;
+        //fireProtection.Stop();
+
+        isProtected = false;
     }
+
     
 }

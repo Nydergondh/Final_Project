@@ -1445,25 +1445,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsStrafing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsAttacking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: CurrentWeapon
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 1
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -2041,10 +2041,10 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1920260062021095112}
-    m_Position: {x: 590, y: -20, z: 0}
+    m_Position: {x: 830, y: -110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4909603463428579701}
-    m_Position: {x: 580, y: 50, z: 0}
+    m_Position: {x: 830, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7560069541983737972}
     m_Position: {x: 290, y: 180, z: 0}
@@ -2053,7 +2053,7 @@ AnimatorStateMachine:
     m_Position: {x: 290, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1400720241526440}
-    m_Position: {x: 590, y: 130, z: 0}
+    m_Position: {x: 830, y: -20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2858740304425058065}
     m_Position: {x: 520, y: 250, z: 0}
@@ -2317,7 +2317,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -4506634401218111706}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
@@ -2837,7 +2837,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions: []
   m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 4337279227305241925}
+  m_DstState: {fileID: 0}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0

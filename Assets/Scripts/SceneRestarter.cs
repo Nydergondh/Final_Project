@@ -5,33 +5,37 @@ using UnityEngine;
 
 public class SceneRestarter : MonoBehaviour
 {
-    private bool restarting = false;
-    public float timeToRestart;
+    //public bool restarting = false;
+    //private int currentScene = 0;
+    //public float timeToRestart;
 
-    private void Update() {
-        //if (!Player.player.alive && !restarting) {
-        //    StartCoroutine(RestartGame());
-        //}
-        if (!Player_Test.player.alive && !restarting) {
-            StartCoroutine(RestartGame());
-        }
-        if (StageManager.INSTANCE.enemyCount <= 0 && !restarting) {
-            StartCoroutine(StageCleared());
-        }
-        if (Input.GetKey(KeyCode.Escape)) {
-            Application.Quit();
-        }
-    }
-    private IEnumerator RestartGame() {
-        restarting = true;
-        yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
-    }
 
-    private IEnumerator StageCleared() {
-        restarting = true;
-        UISingleton.INSTANCE.ShowStageCleared();
-        yield return new WaitForSeconds(timeToRestart);
-        SceneManager.LoadScene(0);
-    }
+    //private void Update() {
+    //    //if (!Player.player.alive && !restarting) {
+    //    //    StartCoroutine(RestartGame());
+    //    //}
+    //    if (!Player_Test.player.alive && !restarting && currentScene < 2) {
+    //        StartCoroutine(RestartGame());
+    //    }
+    //    if (StageManager.INSTANCE.enemyCount <= 0 && !restarting && currentScene <= 2) {
+    //        StartCoroutine(StageCleared());
+    //    }
+    //    if (Input.GetKey(KeyCode.Escape)) {
+    //        Application.Quit();
+    //    }
+    //}
+    //private IEnumerator RestartGame() {
+    //    restarting = true;
+    //    yield return new WaitForSeconds(1f);
+    //    SceneManager.LoadScene(currentScene);
+    //}
+
+    //private IEnumerator StageCleared() {
+    //    restarting = true;
+    //    UISingleton.INSTANCE.ShowStageCleared();
+    //    if (currentScene == 1) {
+    //        SceneManager.LoadScene(2);
+    //    }
+        
+    //}
 }

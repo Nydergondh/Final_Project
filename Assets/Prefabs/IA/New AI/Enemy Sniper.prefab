@@ -264,7 +264,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000029665955, y: 0.40065533, z: -0.00000063621746}
+  m_ConnectedAnchor: {x: -0.00000006147419, y: 0.40065536, z: -0.00000015742422}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -434,7 +434,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000081956365, y: 0.18535109, z: -0.00000051781547}
+  m_ConnectedAnchor: {x: -0.00000007450579, y: 0.18535098, z: -0.0000005140902}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1629,7 +1629,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000000059604623, y: 0.18535084, z: -0.00000026077032}
+  m_ConnectedAnchor: {x: 0.000000059604623, y: 0.18535106, z: -0.0000002644956}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1769,7 +1769,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.096176036, y: 0.031155769, z: 0.007144062}
+  m_ConnectedAnchor: {x: -0.0961758, y: 0.031155769, z: 0.007143585}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -1879,7 +1879,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000012515798, y: 0.367993, z: 0.018947644}
+  m_ConnectedAnchor: {x: -0.00000011326061, y: 0.367993, z: 0.018947644}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1937,7 +1937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4224941194035317699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0681808, y: 0.899, z: 0.3060584}
+  m_LocalPosition: {x: 0.182, y: 1.149, z: 0.806}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8376060804746664432}
@@ -2086,7 +2086,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000001192228, y: 0.4006552, z: -0.00000054586275}
+  m_ConnectedAnchor: {x: 0.0000000032599985, y: 0.4006552, z: -0.00000006799997}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -3343,7 +3343,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.09617578, y: 0.031155646, z: 0.007144071}
+  m_ConnectedAnchor: {x: 0.09617578, y: 0.031155646, z: 0.0071435943}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -3452,7 +3452,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.17960323, y: 0.1602727, z: -0.013016427}
+  m_ConnectedAnchor: {x: 0.17960335, y: 0.1602727, z: -0.013016427}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -3854,94 +3854,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: '
-
-    Transform ''head'' has been deleted
-
-    Transform ''neck''
-    has been deleted
-
-    Transform ''hand.L.003'' has been deleted
-
-    Transform
-    ''hand.L.002'' has been deleted
-
-    Transform ''hand.L.001'' has been deleted
-
-    Transform
-    ''Thumb.L.002'' has been deleted
-
-    Transform ''Thumb.L.001'' has been deleted
-
-    Transform
-    ''Thumb.L'' has been deleted
-
-    Transform ''hand.L'' has been deleted
-
-    Transform
-    ''forearm.L'' has been deleted
-
-    Transform ''upper_arm.L'' has been deleted
-
-    Transform
-    ''shoulder.L'' has been deleted
-
-    Transform ''hand.R.003'' has been deleted
-
-    Transform
-    ''hand.R.002'' has been deleted
-
-    Transform ''hand.R.001'' has been deleted
-
-    Transform
-    ''Thumb.R.002'' has been deleted
-
-    Transform ''Thumb.R.001'' has been deleted
-
-    Transform
-    ''Thumb.R'' has been deleted
-
-    Transform ''hand.R'' has been deleted
-
-    Transform
-    ''forearm.R'' has been deleted
-
-    Transform ''upper_arm.R'' has been deleted
-
-    Transform
-    ''shoulder.R'' has been deleted
-
-    Transform ''chest'' has been deleted
-
-    Transform
-    ''spine'' has been deleted
-
-    Transform ''toe.L'' has been deleted
-
-    Transform
-    ''foot.L'' has been deleted
-
-    Transform ''shin.L'' has been deleted
-
-    Transform
-    ''thigh.L'' has been deleted
-
-    Transform ''toe.R'' has been deleted
-
-    Transform
-    ''foot.R'' has been deleted
-
-    Transform ''shin.R'' has been deleted
-
-    Transform
-    ''thigh.R'' has been deleted
-
-    Transform ''hips'' has been deleted
-
-    Transform
-    ''Root'' has been deleted
-
-    Transform ''Sk Whole'' has been deleted'
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -4066,6 +3979,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 49152
   currentTarget: {fileID: 0}
+  rayOrigin: {fileID: 0}
   seeingPlayer: 0
   hearingPlayer: 0
   hearingRange: 4
@@ -4095,7 +4009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usingMagic: 0
   magicPrefabs:
-  - {fileID: 3513247031526107408, guid: e421aeba0d892454dbbdd7d93e1223a7, type: 3}
+  - {fileID: 8979067348872914496, guid: 19fad93bd1e48264f9990ed105edffd4, type: 3}
   currentMagicId: 0
   unlockedMagics: 
   magicSpawnPoint: {fileID: 4694967009042135471}
@@ -4114,7 +4028,8 @@ AudioSource:
   m_GameObject: {fileID: 8376060804746664441}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 51ca0239f031eea42a27edfd0ea7bbb5,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -4275,7 +4190,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000013052193, y: 0.28944248, z: 0.019287152}
+  m_ConnectedAnchor: {x: -0.000000107896675, y: 0.28944242, z: 0.019287622}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:

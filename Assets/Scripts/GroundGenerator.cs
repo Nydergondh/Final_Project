@@ -33,7 +33,7 @@ public class GroundGenerator : MonoBehaviour
                 bool exclude_4_6 = false;
                 bool exclude_5_6 = false;
                 pos = transform.position;
-                pos = new Vector3(pos.x + (1f * j), pos.y, pos.z + (1f * i));
+                pos = new Vector3(pos.x + (tileScaleFactor * j), pos.y, pos.z + (tileScaleFactor * i));
 
                 tileObj = Instantiate(tile, pos, Quaternion.identity, transform);
                 _renderer = tileObj.GetComponent<MeshRenderer>();

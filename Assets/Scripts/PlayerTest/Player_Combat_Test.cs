@@ -42,7 +42,9 @@ public class Player_Combat_Test: MonoBehaviour
         else {
             usingMagic = true;
         }
-        SetAtkType(usingMagic);
+        if (currentWeapom) {
+            SetAtkType(usingMagic);
+        }
     }
 
     public void Combat() {

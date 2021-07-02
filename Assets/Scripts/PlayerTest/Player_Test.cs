@@ -115,6 +115,12 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
                 EnableRagdoll();
             }
         }
+        if (Input.GetKeyDown(KeyCode.P)) {
+            health = 100;
+        }
+        if (Input.GetKeyDown(KeyCode.L)) {
+            health = 1;
+        }
     }
 
     public int GetDamage() {
@@ -122,23 +128,22 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
     }
 
     public void OnDamage(int damage) {
-        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
-        if (canMove) {
+        if (health > 0) {
+            audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
             health -= damage;
         }
     }
 
     public void OnDamage(int damage, Vector3 bloodDirection) {
-        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
         bloodParticles.transform.rotation = Quaternion.LookRotation(bloodDirection, Vector3.up);
         bloodParticles.Play();
-        if (canMove) {
+        if (health > 0) {
+            audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.BloodSplash));
             health -= damage;
         }
     }
 
     private void EnableRagdoll() {
-
         playerController.enabled = false;
         playerAnimator.SetAlive(false);
 
@@ -150,8 +155,8 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
         foreach (Rigidbody rb in rigidBodys) {
             rb.isKinematic = false;
         }
-        alive = false;
 
+        alive = false;
     }
     
     public void WarpPlayerToPos(Stairs stairs)  {
@@ -162,7 +167,19 @@ public class Player_Test : MonoBehaviour, IDamage, IDamageable {
 
     public void PlayAttackSound() {
         print("Played Attack Sound!");
-        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_1));
+        audioSource.Stop();
+        if (!audioSource.isPlaying) {
+            int sound = Random.Range(1, 3);
+
+            switch (sound){
+                case 1:
+                    audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_1));
+                    break;
+                case 2:
+                    audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_2));
+                    break;
+            }
+        }
     }
 
 }

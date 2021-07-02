@@ -13,6 +13,7 @@ public class FieldOfView_Test : MonoBehaviour
 
     public Enemy_Test enemy { get; set; }
     public Transform currentTarget;
+    public Transform rayOrigin;
 
     public bool seeingPlayer;
     public bool hearingPlayer;

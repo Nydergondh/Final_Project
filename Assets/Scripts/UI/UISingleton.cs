@@ -42,9 +42,15 @@ public class UISingleton : MonoBehaviour
         anim.SetBool("FadeOut", true);
     }
 
-    public void LoadNewMap() {
+    public void LoadNewFloor() {
         anim.SetBool("FadeIn", false);
         anim.SetBool("FadeOut", false);
+    }
+
+    public void FinishLoadMap() {
+        anim.SetBool("FadeIn", false);
+        anim.SetBool("FadeOut", false);
+        StageManager.LoadNewScene();
     }
 
 }

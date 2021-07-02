@@ -67,11 +67,11 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
         }
 
         characterController.enabled = true;
-
-        if (!isRanged) {
-            navAgent.stoppingDistance = enemyCombat.minDistToAttack;
+        if (navAgent.isOnNavMesh) {
+            navAgent.destination = transform.position;
         }
-        else {
+
+        if (isRanged) {
             enemyAnim.SetCurretnWeapon(0);
         }
 
@@ -158,7 +158,17 @@ public class Enemy_Test : MonoBehaviour, IDamage, IDamageable
     }
 
     public void PlayAttackSound() {
-        audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_1));
+        print("Played Attack Sound!");
+        int sound = Random.Range(1, 3);
+
+        switch (sound) {
+            case 1:
+                audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_1));
+                break;
+            case 2:
+                audioSource.PlayOneShot(SoundManager.GetSound(SoundAudios.Sound.WeapomSwing_2));
+                break;
+        }
     }
     
 }

@@ -158,10 +158,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476a5e1477141b74eb87f4666c406c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimTorso: {fileID: 7647394982044660923}
-  playerAnimLegs: {fileID: 501832159387805286}
   playerMesh: {fileID: 157065374887202540}
-  moveSpeed: 3
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  moveSpeed: 5
+  strafeTreshhold: 1.5
 --- !u!114 &157065374887202542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,8 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6bc5f7764664d248a65c92273f1ff3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimTorso: {fileID: 7647394982044660923}
-  playerAnimLegs: {fileID: 501832159387805286}
+  timeinvertedControls: 3
   weaponMeshes:
   - {fileID: 0}
   - {fileID: 973064190094546323}

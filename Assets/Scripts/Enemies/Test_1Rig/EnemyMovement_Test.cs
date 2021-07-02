@@ -32,7 +32,7 @@ public class EnemyMovement_Test : MonoBehaviour
         previewsWayPoint = -1;
 
         enemy.targetTransform = (wayPoints.Count > 0) ? wayPoints[0]: transform;
-        enemy.GetNavAgent().destination = enemy.targetTransform.position;
+        //enemy.GetNavAgent().destination = enemy.targetTransform.position;
         //enemy.enemyAnim.SetMoving(false);
 
         if (enemy.isRanged && enemy.GetNavAgent() != null) {
@@ -181,10 +181,7 @@ public class EnemyMovement_Test : MonoBehaviour
             else {
 
                 enemy.GetNavAgent().isStopped = false;
-                //rotate enemy in case I can only hear him
-                if (!enemy.enemyCombat.isAttacking) {
-
-                }
+                
                 if (enemy.fov.hearingPlayer && !enemy.fov.seeingPlayer) {
                     if (enemy.targetTransform == enemy.fov.currentTarget) {
                         enemy.GetNavAgent().updatePosition = false;
